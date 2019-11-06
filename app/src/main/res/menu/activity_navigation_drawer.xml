@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#1E2D3E">
+
+    <group
+        android:id="@+id/menutop"
+        android:checkableBehavior="single"
+        android:background="#1E2D3E">
+        <item
+            android:id="@+id/nav_quadrinhos"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Quadrinhos" />
+        <item
+            android:id="@+id/nav_autores"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Autores" />
+        <item
+            android:id="@+id/nav_personagens"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Personagens" />
+        <item
+            android:id="@+id/nav_series"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Séries" />
+
+        <item
+            android:id="@+id/nav_favoritos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Favoritos" />
+
+    </group>
+
+    <group
+        android:id="@+id/menubottom"
+        android:checkableBehavior="single"
+        android:background="#1E2D3E">
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Login" />
+
+        <item
+            android:id="@+id/nav_sobre"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Sobre" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Logout"
+
+            />
+
+
+    </group>
+
+
+</menu>
