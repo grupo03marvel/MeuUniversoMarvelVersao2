@@ -10,34 +10,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
-import com.example.meuuniversomarvel.view.adapter.ItemAdapter;
-import com.example.meuuniversomarvel.viewmodel.ItemHome;
-import com.example.meuuniversomarvel.viewmodel.ModeloHome;
+import com.example.meuuniversomarvel.view.fragments.recycler.AutoresFragment;
+import com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment;
+import com.example.meuuniversomarvel.view.fragments.recycler.HqsFragment;
+import com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment;
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.data.remote.Comunicador;
-import com.example.meuuniversomarvel.view.fragments.CategoriaFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+public class HomeActivity extends AppCompatActivity {
 
-public class HomeActivity extends AppCompatActivity implements Comunicador {
-    private Comunicador comunicador;
-    private FrameLayout container;
-    private RecyclerView recyclerView;
-    private ItemAdapter adapter;
-    private List<ItemHome> listaItens = new ArrayList<>();
     private AppBarConfiguration mAppBarConfiguration;
-
-
     private DrawerLayout drawer;
 
     public static final String MH_KEY = "modeloHome";
@@ -47,14 +36,15 @@ public class HomeActivity extends AppCompatActivity implements Comunicador {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ModeloHome modeloHome = new ModeloHome("Fragment", R.drawable.autores, popularLista());
-        setBundleToFragment(modeloHome, MH_KEY);
+        replaceFragment(new HqsFragment());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = findViewById(R.id.drawer_layout);
+        BottomNavigationView menuBarra = findViewById(R.id.menu_barra);
 
+
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,7 +53,7 @@ public class HomeActivity extends AppCompatActivity implements Comunicador {
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens,
-                R.id.nav_favoritos, R.id.nav_series, R.id.nav_autores, R.id.nav_eventos)
+                R.id.nav_favoritos, R.id.nav_series, R.id.nav_autores)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -74,25 +64,27 @@ public class HomeActivity extends AppCompatActivity implements Comunicador {
 
 
                 if (id == R.id.nav_quadrinhos) {
-                    //replaceFragment(new fragmento());
-                    ModeloHome quadrinhos = new ModeloHome("Quadrinhos", R.drawable.series, popularLista());
+                    replaceFragment(new HqsFragment());
                 }
 
                 if (id == R.id.nav_personagens) {
+                    replaceFragment(new PersonagensFragment());
 
-                    ModeloHome personagens = new ModeloHome("Personagens", R.drawable.personagem, popularLista());
                 }
 
                 if (id == R.id.nav_autores) {
-                    ModeloHome autores = new ModeloHome("Autores", R.drawable.autores, popularLista());
+                    replaceFragment(new AutoresFragment());
+
                 }
 
                 if (id == R.id.nav_series) {
-                    ModeloHome series = new ModeloHome("Quadrinhos", R.drawable.series, popularLista());
+                    replaceFragment(new EventosFragment());
+
                 }
 
+
                 if (id == R.id.nav_favoritos) {
-                    ModeloHome favoritos = new ModeloHome("Quadrinhos", R.drawable.series, popularLista());
+
                 }
 
 
@@ -111,22 +103,46 @@ public class HomeActivity extends AppCompatActivity implements Comunicador {
                 return true;
             }
         });
-        //replaceFragment(R.id.container, new CategoriaFragment());
+
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_hqs_barra, R.id.nav_personagens_barra, R.id.nav_autores_barra,
+                R.id.nav_eventos_barra)
+                        .build();
+
+        menuBarra.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                if (id == R.id.nav_hqs_barra) {
+
+                    HomeActivity.this.replaceFragment(new HqsFragment());
+
+                } else if (id == R.id.nav_personagens_barra) {
+
+                    HomeActivity.this.replaceFragment(new PersonagensFragment());
+
+                } else if (id == R.id.nav_autores_barra) {
+
+                    HomeActivity.this.replaceFragment(new AutoresFragment());
+
+                } else if (id == R.id.nav_eventos_barra) {
+
+                    HomeActivity.this.replaceFragment(new EventosFragment());
+
+                }
+
+                return true;
+            }
+        });
+
+
     }
 
 
-    public List<ItemHome> popularLista() {
-        listaItens.add(new ItemHome(R.drawable.hq3, "Shrek"));
-        listaItens.add(new ItemHome(R.drawable.hq3, "Nois"));
-        listaItens.add(new ItemHome(R.drawable.hq3, "lalala"));
 
-        return listaItens;
-    }
 
-    @Override
-    public void receberMensagem(ModeloHome modeloHome) {
-        setBundleToFragment(modeloHome, MH_KEY);
-    }
 
     @Override
     public void onBackPressed() {
@@ -137,25 +153,20 @@ public class HomeActivity extends AppCompatActivity implements Comunicador {
         else{super.onBackPressed();}
     }
 
-    private void replaceFragment(int container, Fragment fragment) {
+    private void replaceFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(container, fragment);
+        transaction.replace(R.id.containerPrincipal, fragment);
         transaction.commit();
     }
 
-    private void setBundleToFragment(ModeloHome modeloHome, String CHAVE) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(CHAVE, modeloHome);
-        Fragment outraCategoria = new CategoriaFragment();
-        outraCategoria.setArguments(bundle);
-        replaceFragment(R.id.container, outraCategoria);
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+
 }
