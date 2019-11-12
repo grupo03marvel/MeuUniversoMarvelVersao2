@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.recyclerview:recyclerview:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca496ed832a2296ed5566da0969fd298/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/85d2d96e5a87ae0e9bb7efb148c76f55/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca496ed832a2296ed5566da0969fd298/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca496ed832a2296ed5566da0969fd298/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/85d2d96e5a87ae0e9bb7efb148c76f55/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/85d2d96e5a87ae0e9bb7efb148c76f55/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
