@@ -27,8 +27,8 @@ public class hqViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     private HqRepository repository = new HqRepository();
-    public static final String PRIVATE_KEY = "0dd0c16fedb8a02985977eafca66b49f5e6a526f";
-    public static final String PUBLIC_KEY = "";
+    public static final String PRIVATE_KEY = "e14bbda3febb4ca26b6dacc098430754cc7e62cc";
+    public static final String PUBLIC_KEY = "d374c335eff01bf5809078f9ffbfdf82";
     String ts = Long.toString(System.currentTimeMillis()/1000);
     String hash = md5(ts+PRIVATE_KEY+PUBLIC_KEY);
 
@@ -50,9 +50,12 @@ public class hqViewModel extends AndroidViewModel {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    Log.i("LOG", "Success: " + response);
+
+                    listaComics.setValue(response.getData().getResults());
+                    Log.i("LOG", "API: " + response.getData().getResults() );
+
                 }, throwable -> {
-                    Log.i("LOG", "Success: " + throwable.getMessage());
+                    Log.i("LOG", "Error: " + throwable.getMessage());
                 })
         );
     }
