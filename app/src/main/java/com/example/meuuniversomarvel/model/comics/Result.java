@@ -8,6 +8,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class Result {
 
+
     @Expose
     private Characters characters;
     @Expose

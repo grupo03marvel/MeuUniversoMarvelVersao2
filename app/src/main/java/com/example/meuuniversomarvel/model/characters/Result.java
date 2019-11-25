@@ -4,13 +4,26 @@ package com.example.meuuniversomarvel.model.characters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
 
 @SuppressWarnings("unused")
+
+@Entity(tableName = "personagens")
 public class Result implements Parcelable {
+    @ColumnInfo(name = "nomePersonagem")
+    private String nome;
+
+    @ColumnInfo(name = "descricaoPersonagem")
+    private String descricao;
+
+
 
     @Expose
     private Comics comics;
@@ -19,6 +32,7 @@ public class Result implements Parcelable {
     @Expose
     private Events events;
     @Expose
+    @PrimaryKey
     private Long id;
     @Expose
     private String modified;

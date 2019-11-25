@@ -10,11 +10,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.meuuniversomarvel.R;
+import com.example.meuuniversomarvel.data.local.CharactersDao;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.view.adapter.PersonagemAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
@@ -23,6 +25,9 @@ import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,6 +89,19 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.containerPrincipal, fragment);
         transaction.commit();
+    }
+
+    private void BuscaTodosPersonagens () {
+
+        CharactersDao.todosPersonagens()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(personagens -> {
+                            adapter.atualizaListaP(personagens);
+                        },
+                        throwable -> {
+                            Log.i("TAG", "método getAllProdutos" + throwable.getMessage());
+                        });
     }
 
 }
