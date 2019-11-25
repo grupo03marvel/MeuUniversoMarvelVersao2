@@ -35,6 +35,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.example.meuuniversomarvel.model.comics.Result;
 
@@ -57,6 +58,11 @@ public abstract class DataBase extends RoomDatabase implements Database {
             }
         }
         return INSTANCE;
+    }
+
+    @TypeConverters({CharactersDao.Converters.class})
+    public abstract class CharactersDB extends RoomDatabase {
+        public abstract CharactersDao charactersDAO();
     }
 }
 
