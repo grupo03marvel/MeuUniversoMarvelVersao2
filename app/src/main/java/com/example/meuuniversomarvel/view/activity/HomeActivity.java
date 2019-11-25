@@ -84,6 +84,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 if (id == R.id.nav_favoritos) {
+                    startActivity(new Intent(HomeActivity.this, FavoritosActivity.class));
 
                 }
 
