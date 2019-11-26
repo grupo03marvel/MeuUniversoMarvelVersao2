@@ -27,9 +27,9 @@ public abstract class Database extends RoomDatabase {
 
     public abstract EventoDAO eventDAO();
 
-    public abstract PersonagemDAO personagemDAO
+    public abstract PersonagemDAO personagemDAO();
 
-    public abstract FavoritosDAO favoritosDAO;
+    public abstract FavoritosDAO favoritosDAO();
 
     public static Database getDatabase(Context context) {
 
