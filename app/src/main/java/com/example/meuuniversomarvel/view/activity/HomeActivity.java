@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//oiiiiiii
         BottomNavigationView menuBarra = findViewById(R.id.menu_barra);
 
 
