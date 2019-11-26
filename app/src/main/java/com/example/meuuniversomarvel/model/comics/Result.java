@@ -1,12 +1,19 @@
 
 package com.example.meuuniversomarvel.model.comics;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-@SuppressWarnings("unused")
-public class Result {
+@Entity(tableName = "comics")
+public class Result implements Parcelable {
 
     @Expose
     private Characters characters;
@@ -30,7 +37,10 @@ public class Result {
     private Events events;
     @Expose
     private String format;
+
     @Expose
+    @PrimaryKey
+    @NonNull
     private Long id;
     @Expose
     private List<Image> images;
@@ -66,6 +76,52 @@ public class Result {
     private String variantDescription;
     @Expose
     private List<Object> variants;
+
+    protected Result(Parcel in) {
+        description = in.readString();
+        diamondCode = in.readString();
+        if (in.readByte() == 0) {
+            digitalId = null;
+        } else {
+            digitalId = in.readLong();
+        }
+        ean = in.readString();
+        format = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        isbn = in.readString();
+        issn = in.readString();
+        if (in.readByte() == 0) {
+            issueNumber = null;
+        } else {
+            issueNumber = in.readLong();
+        }
+        modified = in.readString();
+        if (in.readByte() == 0) {
+            pageCount = null;
+        } else {
+            pageCount = in.readLong();
+        }
+        resourceURI = in.readString();
+        title = in.readString();
+        upc = in.readString();
+        variantDescription = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public Characters getCharacters() {
         return characters;
@@ -299,4 +355,47 @@ public class Result {
         this.variants = variants;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(description);
+        parcel.writeString(diamondCode);
+        if (digitalId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(digitalId);
+        }
+        parcel.writeString(ean);
+        parcel.writeString(format);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(id);
+        }
+        parcel.writeString(isbn);
+        parcel.writeString(issn);
+        if (issueNumber == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(issueNumber);
+        }
+        parcel.writeString(modified);
+        if (pageCount == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(pageCount);
+        }
+        parcel.writeString(resourceURI);
+        parcel.writeString(title);
+        parcel.writeString(upc);
+        parcel.writeString(variantDescription);
+    }
 }

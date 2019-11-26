@@ -4,12 +4,16 @@ package com.example.meuuniversomarvel.model.characters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
 
-@SuppressWarnings("unused")
+@Entity(tableName = "perso")
 public class Result implements Parcelable {
 
     @Expose
@@ -18,7 +22,10 @@ public class Result implements Parcelable {
     private String description;
     @Expose
     private Events events;
+
     @Expose
+    @PrimaryKey
+    @NonNull
     private Long id;
     @Expose
     private String modified;
