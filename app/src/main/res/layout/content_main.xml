@@ -12,7 +12,7 @@
         android:id="@+id/menu_barra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/vermelho"
+        android:background="@color/cor_Azul"
         app:itemIconTint="@color/branco"
         app:itemTextColor="@color/branco"
         app:layout_constraintBottom_toBottomOf="parent"

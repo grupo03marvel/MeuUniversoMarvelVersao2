@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageBannerPers"
+        android:id="@+id/imageBannerAutor"
         android:layout_width="0dp"
         android:layout_height="273dp"
         android:scaleType="centerCrop"
@@ -26,10 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageBannerPers">
+        app:layout_constraintTop_toTopOf="@+id/imageBannerAutor">
 
         <TextView
-            android:id="@+id/textViewTitulo"
+            android:id="@+id/textNomeAutor"
             android:layout_width="207dp"
             android:layout_height="37dp"
             android:layout_marginTop="28dp"
@@ -53,11 +53,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imagePersonagem"
+        android:id="@+id/imageAutor"
         android:layout_width="138dp"
         android:layout_height="126dp"
         android:layout_marginTop="200dp"
-        android:src="@drawable/spider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

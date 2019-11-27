@@ -11,9 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SobreActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.activity.FavoritosActivity"
+            android:label="@string/title_activity_favoritos"></activity>
+        <activity android:name=".view.activity.SobreActivity" />
         <activity android:name=".view.activity.HomeActivity" />
         <activity android:name=".view.activity.CadastroActivity" />
         <activity android:name=".view.activity.RecuperarSenhaActivity" />
@@ -25,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

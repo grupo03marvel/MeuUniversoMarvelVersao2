@@ -4,32 +4,27 @@ package com.example.meuuniversomarvel.model.comics;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.ColumnInfo;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-@SuppressWarnings("unused")
 @Entity(tableName = "comics")
 public class Result implements Parcelable {
 
-    public Result() {
-    }
-
     @Expose
-    @ColumnInfo(name = "pesonagensComic")
     private Characters characters;
-    //@Expose
-    //private List<Object> collectedIssues;
-    //@Expose
-    //private List<Object> collections;
-    //@Expose
-    //private Creators creators;
+    @Expose
+    private List<Object> collectedIssues;
+    @Expose
+    private List<Object> collections;
+    @Expose
+    private Creators creators;
     @Expose
     private List<Date> dates;
-    @ColumnInfo(name = "descricaoComic")
     @Expose
     private String description;
     @Expose
@@ -42,7 +37,10 @@ public class Result implements Parcelable {
     private Events events;
     @Expose
     private String format;
+
     @Expose
+    @PrimaryKey
+    @NonNull
     private Long id;
     @Expose
     private List<Image> images;
@@ -60,17 +58,15 @@ public class Result implements Parcelable {
     private List<Price> prices;
     @Expose
     private String resourceURI;
-    //@Expose
-    //private Series series;
-    //@Expose
-    //private Stories stories;
-    //@Expose
-    //private List<TextObject> textObjects;
-    //@Expose
-    //private Thumbnail thumbnail;
     @Expose
-    @ColumnInfo(name = "nomeComic")
-    private String nome;
+    private Series series;
+    @Expose
+    private Stories stories;
+    @Expose
+    private List<TextObject> textObjects;
+    @Expose
+    private Thumbnail thumbnail;
+    @Expose
     private String title;
     @Expose
     private String upc;
@@ -365,41 +361,41 @@ public class Result implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(description);
-        dest.writeString(diamondCode);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(description);
+        parcel.writeString(diamondCode);
         if (digitalId == null) {
-            dest.writeByte((byte) 0);
+            parcel.writeByte((byte) 0);
         } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(digitalId);
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(digitalId);
         }
-        dest.writeString(ean);
-        dest.writeString(format);
+        parcel.writeString(ean);
+        parcel.writeString(format);
         if (id == null) {
-            dest.writeByte((byte) 0);
+            parcel.writeByte((byte) 0);
         } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(id);
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(id);
         }
-        dest.writeString(isbn);
-        dest.writeString(issn);
+        parcel.writeString(isbn);
+        parcel.writeString(issn);
         if (issueNumber == null) {
-            dest.writeByte((byte) 0);
+            parcel.writeByte((byte) 0);
         } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(issueNumber);
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(issueNumber);
         }
-        dest.writeString(modified);
+        parcel.writeString(modified);
         if (pageCount == null) {
-            dest.writeByte((byte) 0);
+            parcel.writeByte((byte) 0);
         } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(pageCount);
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(pageCount);
         }
-        dest.writeString(resourceURI);
-        dest.writeString(title);
-        dest.writeString(upc);
-        dest.writeString(variantDescription);
+        parcel.writeString(resourceURI);
+        parcel.writeString(title);
+        parcel.writeString(upc);
+        parcel.writeString(variantDescription);
     }
 }
