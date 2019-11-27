@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment.EVENTOS_KEY;
@@ -41,7 +41,7 @@ public class DetalhesEventosFragment extends Fragment {
 
         if (getArguments() != null) {
 
-            Result result = getArguments().getParcelable(EVENTOS_KEY);
+            ResultEvents result = getArguments().getParcelable(EVENTOS_KEY);
 
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);
 

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 import com.example.meuuniversomarvel.view.adapter.EventosAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhesEventosFragment;
 import com.example.meuuniversomarvel.view.interfaces.EventosOnClick;
@@ -28,7 +28,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class EventosFragment extends Fragment implements EventosOnClick {
-    private List<Result> results = new ArrayList<>();
+    private List<ResultEvents> results = new ArrayList<>();
     private EventosViewModel viewModel;
     private RecyclerView recyclerView;
     private EventosAdapter adapter;
@@ -69,9 +69,9 @@ public class EventosFragment extends Fragment implements EventosOnClick {
     }
 
     @Override
-    public void eventosOnClick(Result result) {
+    public void eventosOnClick(ResultEvents resultEvents) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EVENTOS_KEY, result);
+        bundle.putParcelable(EVENTOS_KEY, resultEvents);
 
         Fragment detalheFragment = new DetalhesEventosFragment();
         detalheFragment.setArguments(bundle);

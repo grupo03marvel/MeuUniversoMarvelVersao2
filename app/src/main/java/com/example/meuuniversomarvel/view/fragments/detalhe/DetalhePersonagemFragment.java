@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment.PERSONAGEM_KEY;
@@ -41,7 +41,7 @@ public class DetalhePersonagemFragment extends Fragment {
 
         if (getArguments() != null) {
 
-            Result result = getArguments().getParcelable(PERSONAGEM_KEY);
+            ResultCharacters result = getArguments().getParcelable(PERSONAGEM_KEY);
 
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFrente);
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);

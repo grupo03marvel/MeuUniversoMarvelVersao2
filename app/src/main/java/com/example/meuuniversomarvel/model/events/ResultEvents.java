@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Entity(tableName = "eventos")
-public class Result implements Parcelable {
+public class ResultEvents implements Parcelable {
 
     @Expose
     private Characters characters;
@@ -52,7 +52,7 @@ public class Result implements Parcelable {
     @Expose
     private List<Url> urls;
 
-    protected Result(Parcel in) {
+    protected ResultEvents(Parcel in) {
         description = in.readString();
         end = in.readString();
         if (in.readByte() == 0) {
@@ -66,15 +66,15 @@ public class Result implements Parcelable {
         title = in.readString();
     }
 
-    public static final Creator<Result> CREATOR = new Creator<Result>() {
+    public static final Creator<ResultEvents> CREATOR = new Creator<ResultEvents>() {
         @Override
-        public Result createFromParcel(Parcel in) {
-            return new Result(in);
+        public ResultEvents createFromParcel(Parcel in) {
+            return new ResultEvents(in);
         }
 
         @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
+        public ResultEvents[] newArray(int size) {
+            return new ResultEvents[size];
         }
     };
 

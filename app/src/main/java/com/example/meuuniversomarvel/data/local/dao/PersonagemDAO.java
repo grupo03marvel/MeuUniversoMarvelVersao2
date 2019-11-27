@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 
 import java.util.List;
 
@@ -14,30 +14,30 @@ import io.reactivex.Flowable;
 
 public interface PersonagemDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Result person);
+    void insert(ResultCharacters person);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Result> perso);
+    void insertAll(List<ResultCharacters> perso);
 
     @Update
-    void update(Result person);
+    void update(ResultCharacters person);
 
     @Delete
-    void delete(Result person);
+    void delete(ResultCharacters person);
 
     @Query("DELETE FROM perso")
     void deleteAll();
 
     @Query("SELECT * FROM perso")
-    List<Result> getAll();
+    List<ResultCharacters> getAll();
 
     @Query("SELECT * FROM perso")
-    Flowable<List<Result>> getAllRxJava();
+    Flowable<List<ResultCharacters>> getAllRxJava();
 
-    @Query("SELECT * FROM comics WHERE id = :id ORDER BY id")
-    Result getById(String id);
+    @Query("SELECT * FROM perso WHERE id = :id ORDER BY id")
+    ResultCharacters getById(String id);
 
-    @Query("SELECT * FROM comics WHERE title = :title")
-    Result getByTitle(String title);
+    @Query("SELECT * FROM perso WHERE name = :name")
+    ResultCharacters getByTitle(String name);
 }
 

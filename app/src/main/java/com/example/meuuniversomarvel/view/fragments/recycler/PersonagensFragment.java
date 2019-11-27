@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.example.meuuniversomarvel.view.adapter.PersonagemAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class PersonagensFragment extends Fragment implements PersonagensOnClick {
 
-    private List<Result> results = new ArrayList<>();
+    private List<ResultCharacters> results = new ArrayList<>();
     private PersonagemAdapter adapter;
     private RecyclerView recyclerView;
     private PersonagemViewModel viewModel;
@@ -70,9 +70,9 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
 
     @Override
-    public void personagemOnClick(Result result) {
+    public void personagemOnClick(ResultCharacters resultCharacters) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(PERSONAGEM_KEY, result);
+        bundle.putParcelable(PERSONAGEM_KEY, resultCharacters);
 
         Fragment detalheFragment = new DetalhePersonagemFragment();
         detalheFragment.setArguments(bundle);

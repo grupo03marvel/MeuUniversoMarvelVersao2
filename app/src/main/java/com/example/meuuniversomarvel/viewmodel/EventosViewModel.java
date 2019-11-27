@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.meuuniversomarvel.model.events.Eventos;
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 import com.example.meuuniversomarvel.repository.EventosRepository;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class EventosViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Result>> listaCriadores = new MutableLiveData<>();
+    private MutableLiveData<List<ResultEvents>> listaCriadores = new MutableLiveData<>();
     private EventosRepository repositpory = new EventosRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
 
@@ -40,7 +40,7 @@ public class EventosViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<Result>> getListaEventos(){
+    public LiveData<List<ResultEvents>> getListaEventos(){
         return this.listaCriadores;
     }
 

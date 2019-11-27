@@ -1,8 +1,8 @@
 package com.example.meuuniversomarvel.view.interfaces;
 
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 
 public interface EventosOnClick {
 
-    void eventosOnClick(Result result);
+    void eventosOnClick(ResultEvents resultEvents);
 }

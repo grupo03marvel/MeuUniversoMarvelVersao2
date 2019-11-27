@@ -13,7 +13,7 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 @Entity(tableName = "comics")
-public class Result implements Parcelable {
+public class ResultComics implements Parcelable {
 
     @Expose
     private Characters characters;
@@ -77,7 +77,7 @@ public class Result implements Parcelable {
     @Expose
     private List<Object> variants;
 
-    protected Result(Parcel in) {
+    protected ResultComics(Parcel in) {
         description = in.readString();
         diamondCode = in.readString();
         if (in.readByte() == 0) {
@@ -111,15 +111,15 @@ public class Result implements Parcelable {
         variantDescription = in.readString();
     }
 
-    public static final Creator<Result> CREATOR = new Creator<Result>() {
+    public static final Creator<ResultComics> CREATOR = new Creator<ResultComics>() {
         @Override
-        public Result createFromParcel(Parcel in) {
-            return new Result(in);
+        public ResultComics createFromParcel(Parcel in) {
+            return new ResultComics(in);
         }
 
         @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
+        public ResultComics[] newArray(int size) {
+            return new ResultComics[size];
         }
     };
 

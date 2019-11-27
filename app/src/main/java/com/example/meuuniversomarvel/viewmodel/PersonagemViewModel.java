@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.meuuniversomarvel.model.characters.Personagens;
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class PersonagemViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Result>> listaPersona = new MutableLiveData<>();
+    private MutableLiveData<List<ResultCharacters>> listaPersona = new MutableLiveData<>();
     private PersonagemRepository Repository = new PersonagemRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
 
@@ -40,7 +40,7 @@ public class PersonagemViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<Result>> getListaPersonagem(){
+    public LiveData<List<ResultCharacters>> getListaPersonagem(){
         return this.listaPersona;
     }
 

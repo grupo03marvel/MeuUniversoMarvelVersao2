@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 
 import java.util.List;
 
@@ -15,29 +15,29 @@ import io.reactivex.Flowable;
 public interface EventoDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Result event);
+    void insert(ResultEvents event);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Result> eventos);
+    void insertAll(List<ResultEvents> eventos);
 
     @Update
-    void update(Result event);
+    void update(ResultEvents event);
 
     @Delete
-    void delete(Result event);
+    void delete(ResultEvents event);
 
     @Query("DELETE FROM eventos")
     void deleteAll();
 
     @Query("SELECT * FROM eventos")
-    List<Result> getAll();
+    List<ResultEvents> getAll();
 
     @Query("SELECT * FROM eventos")
-    Flowable<List<Result>> getAllRxJava();
+    Flowable<List<ResultEvents>> getAllRxJava();
 
     @Query("SELECT * FROM eventos WHERE id = :id ORDER BY id")
-    Result getById(String id);
+    ResultEvents getById(String id);
 
     @Query("SELECT * FROM eventos WHERE title = :title")
-    Result getByTitle(String title);
+    ResultEvents getByTitle(String title);
 }

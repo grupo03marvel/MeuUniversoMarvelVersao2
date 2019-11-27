@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.meuuniversomarvel.model.comics.Result;
+import com.example.meuuniversomarvel.model.comics.ResultComics;
 import com.example.meuuniversomarvel.repository.HqRepository;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class hqViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Result>> listaComics = new MutableLiveData<>();
+    private MutableLiveData<List<ResultComics>> listaComics = new MutableLiveData<>();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     private HqRepository repository = new HqRepository();
@@ -34,7 +34,7 @@ public class hqViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<List<Result>> getListaHqs(){
+    public LiveData<List<ResultComics>> getListaHqs(){
         return this.listaComics;
     }
 

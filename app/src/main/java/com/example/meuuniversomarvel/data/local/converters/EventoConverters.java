@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.List;
 
 public class EventoConverters {
@@ -145,21 +144,6 @@ public class EventoConverters {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
-
-    // Type converter
-    @TypeConverter
-    public List<Collection> fromListCollection(String value) {
-        Type listType = (Type) new TypeToken<List<Collection>>() {
-        }.getType();
-        return new Gson().fromJson(value, listType);
-    }
-
-    @TypeConverter
-    public String fromListCollection(List<Collection> list) {
-        Gson gson = new Gson();
-        return gson.toJson(list);
-    }
-
 
     // Type converter
     @TypeConverter

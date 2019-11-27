@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
     public class PersonagemAdapter extends RecyclerView.Adapter <PersonagemAdapter.ViewHolder> {
-        private List<Result> resultList;
+        private List<ResultCharacters> resultList;
         private PersonagensOnClick listener;
 
-        public PersonagemAdapter(List<Result> resultList, PersonagensOnClick listener) {
-            this.resultList = resultList;
+        public PersonagemAdapter(List<ResultCharacters> resultCharactersList, PersonagensOnClick listener) {
+            this.resultList = resultCharactersList;
             this.listener = listener;
         }
 
@@ -34,7 +34,7 @@ import java.util.List;
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            final Result result = resultList.get(position);
+            final ResultCharacters result = resultList.get(position);
             holder.onBind(result);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ import java.util.List;
             return resultList.size();
         }
 
-        public void atualizaListaP(List<Result> novaLista){
+        public void atualizaListaP(List<ResultCharacters> novaLista){
             if (this.resultList.isEmpty()){
                 this.resultList = novaLista;
             }else {
@@ -74,10 +74,10 @@ import java.util.List;
                 fotoPerso = itemView.findViewById(R.id.imgItem);
             }
 
-            public void onBind(Result result) {
-                Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(fotoPerso);
+            public void onBind(ResultCharacters resultCharacters) {
+                Picasso.get().load(resultCharacters.getThumbnail().getPath() + ".jpg").into(fotoPerso);
 
-                nomePerso.setText(result.getName());
+                nomePerso.setText(resultCharacters.getName());
 
             }
         }
