@@ -1,4 +1,4 @@
-package com.example.meuuniversomarvel.viewmodel;
+package com.example.meuuniversomarvel.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

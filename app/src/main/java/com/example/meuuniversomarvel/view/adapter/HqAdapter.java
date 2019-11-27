@@ -1,3 +1,4 @@
+
 package com.example.meuuniversomarvel.view.adapter;
 
 import android.view.LayoutInflater;
@@ -13,18 +14,17 @@ import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.comics.Image;
 import com.example.meuuniversomarvel.model.comics.Item;
 import com.example.meuuniversomarvel.model.comics.Result;
-import com.example.meuuniversomarvel.view.interfaces.OnClick;
+import com.example.meuuniversomarvel.view.interfaces.HqsOnClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
-
     private List<Result> hqsList;
     private List<Image> hqsListImagem;
-    private OnClick listener;
+    private HqsOnClick listener;
 
-    public HqAdapter(List<Result> hqsList, OnClick listener) {
+    public HqAdapter(List<Result> hqsList, HqsOnClick listener) {
         this.hqsList = hqsList;
         this.listener = listener;
     }
@@ -85,3 +85,4 @@ public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
 
     }
 }
+

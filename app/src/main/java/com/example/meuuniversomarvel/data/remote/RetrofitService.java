@@ -1,7 +1,6 @@
 package com.example.meuuniversomarvel.data.remote;
 
-
-import com.example.meuuniversomarvel.BuildConfig;
+import com.facebook.stetho.okhttp3.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -16,7 +15,6 @@ public class RetrofitService {
 
 
     private static final String BASE_URL = "https://gateway.marvel.com:443/v1/public/";
-
     private static Retrofit retrofit;
 
     private static Retrofit getRetrofit() {
@@ -31,11 +29,12 @@ public class RetrofitService {
             httpClient.writeTimeout(30, TimeUnit.SECONDS);
 
             // Se estivermos em modo DEBUG habilitamos os logs
-
+            if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 httpClient.addInterceptor(httpLoggingInterceptor);
                 httpClient.addNetworkInterceptor(new StethoInterceptor());
+            }
 
             // inicializamos o retrofit com as configurações
             retrofit = new Retrofit.Builder()
