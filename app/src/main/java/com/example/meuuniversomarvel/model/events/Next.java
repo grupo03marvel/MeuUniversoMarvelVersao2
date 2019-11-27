@@ -1,16 +1,36 @@
 
 package com.example.meuuniversomarvel.model.events;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 
 
 @SuppressWarnings("unused")
-public class Next {
+public class Next implements Parcelable {
 
     @Expose
     private String name;
     @Expose
     private String resourceURI;
+
+    protected Next(Parcel in) {
+        name = in.readString();
+        resourceURI = in.readString();
+    }
+
+    public static final Creator<Next> CREATOR = new Creator<Next>() {
+        @Override
+        public Next createFromParcel(Parcel in) {
+            return new Next(in);
+        }
+
+        @Override
+        public Next[] newArray(int size) {
+            return new Next[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -28,4 +48,14 @@ public class Next {
         this.resourceURI = resourceURI;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(resourceURI);
+    }
 }

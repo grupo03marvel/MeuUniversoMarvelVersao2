@@ -15,6 +15,24 @@ import java.util.List;
 
 @Entity(tableName = "eventos")
 public class ResultEvents implements Parcelable {
+    public ResultEvents(Characters characters, Comics comics, Creators creators, String description, String end, @NonNull Long id, String modified, Next next, Previous previous, String resourceURI, Series series, String start, Stories stories, Thumbnail thumbnail, String title, List<Url> urls) {
+        this.characters = characters;
+        this.comics = comics;
+        this.creators = creators;
+        this.description = description;
+        this.end = end;
+        this.id = id;
+        this.modified = modified;
+        this.next = next;
+        this.previous = previous;
+        this.resourceURI = resourceURI;
+        this.series = series;
+        this.start = start;
+        this.stories = stories;
+        this.thumbnail = thumbnail;
+        this.title = title;
+        this.urls = urls;
+    }
 
     @Expose
     private Characters characters;

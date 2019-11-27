@@ -66,6 +66,20 @@ public class ResultCharacters implements Parcelable {
         }
     };
 
+    public ResultCharacters(Comics comics, String description, Events events, @NonNull Long id, String modified, String name, String resourceURI, Series series, Stories stories, Thumbnail thumbnail, List<Url> urls) {
+        this.comics = comics;
+        this.description = description;
+        this.events = events;
+        this.id = id;
+        this.modified = modified;
+        this.name = name;
+        this.resourceURI = resourceURI;
+        this.series = series;
+        this.stories = stories;
+        this.thumbnail = thumbnail;
+        this.urls = urls;
+    }
+
     public Comics getComics() {
         return comics;
     }

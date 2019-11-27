@@ -161,6 +161,19 @@ public class ComicConverters {
         return gson.toJson(list);
     }
 
+    @TypeConverter
+    public List<Object> fromListObject(String value) {
+        Type listType = (Type) new TypeToken<List<TextObject>>() {
+        }.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public String fromListObject(List<Object> list) {
+        Gson gson = new Gson();
+        return gson.toJson(list);
+    }
+
     // Type converter
     @TypeConverter
     public List<Price> fromListPrice(String value) {

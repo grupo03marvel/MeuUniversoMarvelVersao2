@@ -32,7 +32,6 @@ public class Favoritos implements Parcelable {
     @Expose
     private String loginUser;
 
-
     @Expose
     private String idComic;
 
@@ -65,6 +64,17 @@ public class Favoritos implements Parcelable {
             return new Favoritos[size];
         }
     };
+
+    public Favoritos(long tableId, ResultComics comicsResult, ResultCharacters charactersResult, ResultEvents eventsResult, String loginUser, String idComic, String idEvent, String idCharacter) {
+        this.tableId = tableId;
+        this.comicsResult = comicsResult;
+        this.charactersResult = charactersResult;
+        this.eventsResult = eventsResult;
+        this.loginUser = loginUser;
+        this.idComic = idComic;
+        this.idEvent = idEvent;
+        this.idCharacter = idCharacter;
+    }
 
     @Override
     public int describeContents() {
