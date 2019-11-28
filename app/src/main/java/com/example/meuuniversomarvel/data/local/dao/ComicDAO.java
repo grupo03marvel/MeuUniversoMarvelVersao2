@@ -11,7 +11,7 @@ import com.example.meuuniversomarvel.model.comics.ResultComics;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 @Dao
 public interface ComicDAO {
@@ -34,9 +34,9 @@ public interface ComicDAO {
     @Query("SELECT * FROM Comics")
     List<ResultComics> getAll();
 
-    @Query("SELECT * FROM Comics")
-    Flowable<List<ResultComics>> getAllRxJava();
-
+  /*  @Query("SELECT * FROM Comics")
+    Observable<List<ResultComics>> getAllComics();
+*/
     @Query("SELECT * FROM Comics WHERE id = :id ORDER BY id")
     ResultComics getById(String id);
 

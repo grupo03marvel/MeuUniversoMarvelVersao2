@@ -12,6 +12,7 @@ import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 @Dao
 public interface PersonagemDAO {
@@ -33,9 +34,9 @@ public interface PersonagemDAO {
     @Query("SELECT * FROM perso")
     List<ResultCharacters> getAll();
 
-    @Query("SELECT * FROM perso")
-    Flowable<List<ResultCharacters>> getAllRxJava();
-
+   /* @Query("SELECT * FROM perso")
+    Observable<List<ResultCharacters>> getAllCharactes();
+*/
     @Query("SELECT * FROM perso WHERE id = :id ORDER BY id")
     ResultCharacters getById(String id);
 

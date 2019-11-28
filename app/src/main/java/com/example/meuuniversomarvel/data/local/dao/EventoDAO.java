@@ -12,6 +12,7 @@ import com.example.meuuniversomarvel.model.events.ResultEvents;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 @Dao
 public interface EventoDAO {
@@ -34,8 +35,8 @@ public interface EventoDAO {
     @Query("SELECT * FROM eventos")
     List<ResultEvents> getAll();
 
-    @Query("SELECT * FROM eventos")
-    Flowable<List<ResultEvents>> getAllRxJava();
+  /*  @Query("SELECT * FROM eventos")
+    Observable<List<ResultEvents>> getAllEvents();*/
 
     @Query("SELECT * FROM eventos WHERE id = :id ORDER BY id")
     ResultEvents getById(String id);

@@ -1,3 +1,4 @@
+/*
 package com.example.meuuniversomarvel.data.local.converters;
 
 import androidx.room.TypeConverter;
@@ -54,3 +55,4 @@ public class FavoritosCoverters {
         return gson.toJson(list);
     }
 }
+*/

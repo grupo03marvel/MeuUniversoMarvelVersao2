@@ -1,3 +1,4 @@
+/*
 package com.example.meuuniversomarvel.data.local.dao;
 
 import androidx.room.Dao;
@@ -56,3 +57,4 @@ public interface FavoritosDAO {
     Favoritos getFavoritesByEventId(String idEvent);
 
 }
+*/

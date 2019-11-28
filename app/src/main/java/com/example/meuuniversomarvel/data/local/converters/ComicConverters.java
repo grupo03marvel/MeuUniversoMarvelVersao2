@@ -187,5 +187,4 @@ public class ComicConverters {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
-
 }
