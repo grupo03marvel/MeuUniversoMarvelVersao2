@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/HQs_Favoritos"
+        android:icon="@drawable/icon_appbar_1"
+        android:title="HQs Favoritos" />
+
+    <item
+        android:id="@+id/personagens_Favoritos"
+        android:icon="@drawable/icon_appbar_2"
+        android:title="Personagens" />
+
+    <item
+        android:id="@+id/VoltarMenu"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Menu Principal" />
+
+</menu>
