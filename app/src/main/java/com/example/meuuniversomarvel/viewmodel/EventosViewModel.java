@@ -26,6 +26,8 @@ public class EventosViewModel extends AndroidViewModel {
     private MutableLiveData<List<Result>> listaCriadores = new MutableLiveData<>();
     private EventosRepository repositpory = new EventosRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
+    private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+
 
     public static final String PUBLIC_KEY = "fe81c0a4bd6c7f00e3df25d68d8d8a92";
 
@@ -44,15 +46,20 @@ public class EventosViewModel extends AndroidViewModel {
         return this.listaCriadores;
     }
 
-    public void getEventos() {
+    public LiveData<Boolean> getLoading(){
+        return this.loading;
+    }
+
+    public void getEventos(int pagina) {
 
         disposable.add(
-                repositpory.getEventosRepositori("name", ts, hash, PUBLIC_KEY)
+                repositpory.getEventosRepositori(pagina, "name", ts, hash, PUBLIC_KEY)
 
                         .subscribeOn(Schedulers.newThread())
 
                         .observeOn(AndroidSchedulers.mainThread())
-
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
                         .subscribe(new Consumer<Eventos>() {
                             @Override
                             public void accept(Eventos eventos) throws Exception {

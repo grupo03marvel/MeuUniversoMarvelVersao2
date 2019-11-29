@@ -3,6 +3,7 @@ package com.example.meuuniversomarvel.view.fragments.recycler;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
@@ -34,6 +36,10 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
     private RecyclerView recyclerView;
     private PersonagemViewModel viewModel;
     public static final String PERSONAGEM_KEY = "Personagem";
+    private ProgressBar progressBar;
+
+
+    private int pagina = 0;
 
 
     public PersonagensFragment() {
@@ -50,12 +56,20 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        setScrollView();
 
-
-        viewModel.getPersonagens();
+        viewModel.getPersonagens(pagina);
         viewModel.getListaPersonagem().observe(this, results1 -> {
             adapter.atualizaListaP(results1);
 
+        });
+
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading){
+                progressBar.setVisibility(View.VISIBLE);
+            }else {
+                progressBar.setVisibility(View.GONE);
+            }
         });
 
 
@@ -66,6 +80,8 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         recyclerView = view.findViewById(R.id.recycler_personagens);
         viewModel = ViewModelProviders.of(this).get(PersonagemViewModel.class);
         adapter = new PersonagemAdapter(results, this);
+        progressBar = view.findViewById(R.id.progress_bar);
+
     }
 
 
@@ -84,6 +100,37 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.containerPrincipal, fragment);
         transaction.commit();
+    }
+
+    private void setScrollView(){
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState){
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+
+                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+
+                int totalItemCount = gridLayoutManager.getItemCount();
+
+                int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
+
+                boolean ultimoItem = lastVisible + 5 >= totalItemCount;
+
+                if (totalItemCount > 0 && ultimoItem){
+                    pagina++;
+                    viewModel.getPersonagens(pagina);
+                }
+            }
+
+        });
+
     }
 
 }

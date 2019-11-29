@@ -5,12 +5,13 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.meuuniversomarvel"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -40,7 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     implementation 'com.facebook.android:facebook-login:[5,6)'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    //implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     // ViewModel and LiveData
     def lifecycle_version = "1.1.1"
@@ -78,5 +79,15 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+
+    // Firebase login
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+
+    implementation 'com.android.support:multidex:1.0.0'
 
 }
+
+apply plugin: 'com.google.gms.google-services'
+

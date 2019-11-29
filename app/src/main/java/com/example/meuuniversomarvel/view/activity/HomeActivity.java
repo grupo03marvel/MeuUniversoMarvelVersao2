@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
 
+    int menu;
+
     public static final String MH_KEY = "modeloHome";
 
     @Override
@@ -61,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-
+                menu = menuItem.getItemId();
 
                 if (id == R.id.nav_quadrinhos) {
                     replaceFragment(new HqsFragment());
@@ -115,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 int id = menuItem.getItemId();
+                menu = menuItem.getItemId();
 
                 if (id == R.id.nav_hqs_barra) {
 
@@ -142,16 +145,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else{super.onBackPressed();}
+
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -168,6 +164,7 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
 
 }
