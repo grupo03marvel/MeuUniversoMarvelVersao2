@@ -135,7 +135,7 @@
     <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.room:room-rxjava2:2.0.0-rc01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.room:room-rxjava2:2.1.0-alpha06@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.stetho:stetho-okhttp3:1.5.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.stetho:stetho:1.5.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.picasso:picasso:2.71828@aar" level="project" />
