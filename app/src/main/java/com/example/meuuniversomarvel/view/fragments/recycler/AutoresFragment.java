@@ -27,6 +27,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+public class AutoresFragment extends Fragment {
 public class AutoresFragment extends Fragment implements CriadoresOnClick {
     private List<Result> results = new ArrayList<>();
     private AutoresViewModel viewModel;

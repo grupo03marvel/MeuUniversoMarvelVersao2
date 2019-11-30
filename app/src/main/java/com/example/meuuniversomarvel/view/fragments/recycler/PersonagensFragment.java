@@ -88,3 +88,9 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
 }
 
+
+        return  view;
+    }
+
+
+}
