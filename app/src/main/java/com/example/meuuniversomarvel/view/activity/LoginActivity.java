@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.meuuniversomarvel.R;
+import com.example.meuuniversomarvel.util.AppUtil;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -21,6 +23,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,39 +51,12 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+        initViews();
 
-        textViewLogin = findViewById(R.id.textViewlogin);
-        imageViewLogin = findViewById(R.id.imageViewLogin);
-        textInputLogin = findViewById(R.id.textInputLayoutUsuario);
-        textInputSenha = findViewById(R.id.textInputLayoutSenha);
-        buttonEntrar = findViewById(R.id.buttonEntrar);
-        buttonEsqueciSenha = findViewById(R.id.buttonEsqueciSenha);
-        buttonCriarConta = findViewById(R.id.buttonCriarConta);
-        loginButtonFace = findViewById(R.id.login_button_facebook);
+        //Faz o login com email e senha
+        buttonEntrar.setOnClickListener(v -> loginEmail());
+
         callbackManager = CallbackManager.Factory.create();
-        buttonEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String email = textInputLogin.getEditText().getText().toString();
-                String senha = textInputSenha.getEditText().getText().toString();
-
-                if (Patterns.EMAIL_ADDRESS.matcher(email).matches() && !senha.isEmpty()){
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    textInputLogin.setError("O usuário digitado não é válido");
-                    textInputLogin.setErrorEnabled(false);
-                    Snackbar.make(view, "O usuário digitado não é válido", Snackbar.LENGTH_LONG).show();
-                } else if (senha.isEmpty()){
-                    textInputSenha.setError("O campo senha deve ser preenchido");
-                    textInputSenha.setErrorEnabled(false);
-                    Snackbar.make(view, "O campo senha deve ser preenchido", Snackbar.LENGTH_LONG).show();
-                }
-
-
-
-            }
-        });
 
         buttonEsqueciSenha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +93,56 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void initViews() {
+
+        textViewLogin = findViewById(R.id.textViewlogin);
+        imageViewLogin = findViewById(R.id.imageViewLogin);
+        textInputLogin = findViewById(R.id.textInputLayoutUsuario);
+        textInputSenha = findViewById(R.id.textInputLayoutSenha);
+        buttonEntrar = findViewById(R.id.buttonEntrar);
+        buttonEsqueciSenha = findViewById(R.id.buttonEsqueciSenha);
+        buttonCriarConta = findViewById(R.id.buttonCriarConta);
+        loginButtonFace = findViewById(R.id.login_button_facebook);
+
+    }
+
+    public void loginEmail() {
+
+        String email = textInputLogin.getEditText().getText().toString();
+        String password = textInputSenha.getEditText().getText().toString();
+
+       if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            textInputLogin.setError("O usuário digitado não é válido");
+            textInputLogin.setErrorEnabled(false);
+            Snackbar.make(textInputLogin, "O usuário digitado não é válido", Snackbar.LENGTH_LONG).show();
+            return;
+        } if (password.isEmpty() || email.isEmpty() ){
+
+            textInputSenha.setError("Campos não podem ser vazios");
+            textInputSenha.setErrorEnabled(false);
+            Snackbar.make(textInputSenha, "Campos não podem ser vazios", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+
+        // tentamos fazer o login com o email e senha no firebase
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        irParaHome(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    } else {
+                        Snackbar.make(buttonEntrar, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void irParaHome(String uiid) {
+        AppUtil.salvarIdUsuario(getApplication().getApplicationContext(), uiid);
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        finish();
     }
 
     @Override

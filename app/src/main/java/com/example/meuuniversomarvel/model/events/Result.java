@@ -1,5 +1,5 @@
 
-package com.example.meuuniversomarvel.model.characters;
+package com.example.meuuniversomarvel.model.events;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,15 +13,19 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 
-@Entity(tableName = "perso")
-public class ResultCharacters implements Parcelable {
+@Entity(tableName = "eventos")
+public class Result implements Parcelable {
 
+    @Expose
+    private Characters characters;
     @Expose
     private Comics comics;
     @Expose
+    private Creators creators;
+    @Expose
     private String description;
     @Expose
-    private Events events;
+    private String end;
 
     @Expose
     @PrimaryKey
@@ -30,54 +34,56 @@ public class ResultCharacters implements Parcelable {
     @Expose
     private String modified;
     @Expose
-    private String name;
+    private Next next;
+    @Expose
+    private Previous previous;
     @Expose
     private String resourceURI;
     @Expose
     private Series series;
     @Expose
+    private String start;
+    @Expose
     private Stories stories;
     @Expose
     private Thumbnail thumbnail;
     @Expose
+    private String title;
+    @Expose
     private List<Url> urls;
 
-    protected ResultCharacters(Parcel in) {
+    protected Result(Parcel in) {
         description = in.readString();
+        end = in.readString();
         if (in.readByte() == 0) {
             id = null;
         } else {
             id = in.readLong();
         }
         modified = in.readString();
-        name = in.readString();
         resourceURI = in.readString();
+        start = in.readString();
+        title = in.readString();
     }
 
-    public static final Creator<ResultCharacters> CREATOR = new Creator<ResultCharacters>() {
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
         @Override
-        public ResultCharacters createFromParcel(Parcel in) {
-            return new ResultCharacters(in);
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
         }
 
         @Override
-        public ResultCharacters[] newArray(int size) {
-            return new ResultCharacters[size];
+        public Result[] newArray(int size) {
+            return new Result[size];
         }
     };
 
-    public ResultCharacters(Comics comics, String description, Events events, @NonNull Long id, String modified, String name, String resourceURI, Series series, Stories stories, Thumbnail thumbnail, List<Url> urls) {
-        this.comics = comics;
-        this.description = description;
-        this.events = events;
-        this.id = id;
-        this.modified = modified;
-        this.name = name;
-        this.resourceURI = resourceURI;
-        this.series = series;
-        this.stories = stories;
-        this.thumbnail = thumbnail;
-        this.urls = urls;
+    public Characters getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(Characters characters) {
+        this.characters = characters;
     }
 
     public Comics getComics() {
@@ -88,6 +94,14 @@ public class ResultCharacters implements Parcelable {
         this.comics = comics;
     }
 
+    public Creators getCreators() {
+        return creators;
+    }
+
+    public void setCreators(Creators creators) {
+        this.creators = creators;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -96,12 +110,12 @@ public class ResultCharacters implements Parcelable {
         this.description = description;
     }
 
-    public Events getEvents() {
-        return events;
+    public String getEnd() {
+        return end;
     }
 
-    public void setEvents(Events events) {
-        this.events = events;
+    public void setEnd(String end) {
+        this.end = end;
     }
 
     public Long getId() {
@@ -120,12 +134,20 @@ public class ResultCharacters implements Parcelable {
         this.modified = modified;
     }
 
-    public String getName() {
-        return name;
+    public Next getNext() {
+        return next;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNext(Next next) {
+        this.next = next;
+    }
+
+    public Previous getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(Previous previous) {
+        this.previous = previous;
     }
 
     public String getResourceURI() {
@@ -144,6 +166,14 @@ public class ResultCharacters implements Parcelable {
         this.series = series;
     }
 
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
     public Stories getStories() {
         return stories;
     }
@@ -158,6 +188,14 @@ public class ResultCharacters implements Parcelable {
 
     public void setThumbnail(Thumbnail thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Url> getUrls() {
@@ -176,6 +214,7 @@ public class ResultCharacters implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(description);
+        parcel.writeString(end);
         if (id == null) {
             parcel.writeByte((byte) 0);
         } else {
@@ -183,7 +222,8 @@ public class ResultCharacters implements Parcelable {
             parcel.writeLong(id);
         }
         parcel.writeString(modified);
-        parcel.writeString(name);
         parcel.writeString(resourceURI);
+        parcel.writeString(start);
+        parcel.writeString(title);
     }
 }

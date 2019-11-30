@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.meuuniversomarvel.model.characters.Personagens;
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
+import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
 
 import java.util.List;
@@ -23,9 +23,11 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class PersonagemViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<ResultCharacters>> listaPersona = new MutableLiveData<>();
+    private MutableLiveData<List<Result>> listaPersona = new MutableLiveData<>();
     private PersonagemRepository Repository = new PersonagemRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
+    private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+
 
     public static final String PUBLIC_KEY = "fe81c0a4bd6c7f00e3df25d68d8d8a92";
 
@@ -39,20 +41,24 @@ public class PersonagemViewModel extends AndroidViewModel {
         super(application);
     }
 
-
-    public LiveData<List<ResultCharacters>> getListaPersonagem(){
+    public LiveData<List<Result>> getListaPersonagem(){
         return this.listaPersona;
     }
 
-    public void getPersonagens() {
+    public LiveData<Boolean> getLoading(){
+        return this.loading;
+    }
+
+    public void getPersonagens(int pagina) {
 
         disposable.add(
-                Repository.getPersonagemRepositori("name", ts, hash, PUBLIC_KEY)
+                Repository.getPersonagemRepositori(pagina,"name", ts, hash, PUBLIC_KEY)
 
                         .subscribeOn(Schedulers.newThread())
 
                         .observeOn(AndroidSchedulers.mainThread())
-
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
                         .subscribe(new Consumer<Personagens>() {
                             @Override
                             public void accept(Personagens personagem) throws Exception {

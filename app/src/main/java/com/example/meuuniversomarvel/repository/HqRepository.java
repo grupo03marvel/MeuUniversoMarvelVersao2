@@ -8,8 +8,8 @@ import static com.example.meuuniversomarvel.data.remote.RetrofitService.getApiSe
 
 public class HqRepository {
 
-    public Observable<ComicsResult> getHqs(String format, String formatType, boolean noVariants, String orderBy, String ts, String hash, String apiKey){
-        return getApiService().getAllComics(format, formatType, noVariants, orderBy, ts, hash, apiKey);
+    public Observable<ComicsResult> getHqs(int pagina, String format, String formatType, boolean noVariants, String orderBy, String ts, String hash, String apiKey){
+        return getApiService().getAllComics(pagina, format, formatType, noVariants, orderBy, ts, hash, apiKey);
     }
 
 }

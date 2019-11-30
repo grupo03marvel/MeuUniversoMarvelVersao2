@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "905284510583",
+    "firebase_url": "https://meuuniversomarvel-a6239.firebaseio.com",
+    "project_id": "meuuniversomarvel-a6239",
+    "storage_bucket": "meuuniversomarvel-a6239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905284510583:android:c1a47b2521a931d6a77772",
+        "android_client_info": {
+          "package_name": "com.example.meuuniversomarvel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905284510583-6dup434a0kqo16rcckvle7q9q788ra15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwkOwAkwOd0LAJHBFw-vTJfxic90gO8NE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905284510583-6dup434a0kqo16rcckvle7q9q788ra15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,7 +13,8 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 @Entity(tableName = "comics")
-public class ResultComics implements Parcelable {
+public class Result implements Parcelable {
+
     @Expose
     private Characters characters;
     @Expose
@@ -76,39 +77,7 @@ public class ResultComics implements Parcelable {
     @Expose
     private List<Object> variants;
 
-    public ResultComics(Characters characters, List<Object> collectedIssues, List<Object> collections, Creators creators, List<Date> dates, String description, String diamondCode, Long digitalId, String ean, Events events, String format, @NonNull Long id, List<Image> images, String isbn, String issn, Long issueNumber, String modified, Long pageCount, List<Price> prices, String resourceURI, Series series, Stories stories, List<TextObject> textObjects, Thumbnail thumbnail, String title, String upc, List<Url> urls, String variantDescription, List<Object> variants) {
-        this.characters = characters;
-        this.collectedIssues = collectedIssues;
-        this.collections = collections;
-        this.creators = creators;
-        this.dates = dates;
-        this.description = description;
-        this.diamondCode = diamondCode;
-        this.digitalId = digitalId;
-        this.ean = ean;
-        this.events = events;
-        this.format = format;
-        this.id = id;
-        this.images = images;
-        this.isbn = isbn;
-        this.issn = issn;
-        this.issueNumber = issueNumber;
-        this.modified = modified;
-        this.pageCount = pageCount;
-        this.prices = prices;
-        this.resourceURI = resourceURI;
-        this.series = series;
-        this.stories = stories;
-        this.textObjects = textObjects;
-        this.thumbnail = thumbnail;
-        this.title = title;
-        this.upc = upc;
-        this.urls = urls;
-        this.variantDescription = variantDescription;
-        this.variants = variants;
-    }
-
-    protected ResultComics(Parcel in) {
+    protected Result(Parcel in) {
         description = in.readString();
         diamondCode = in.readString();
         if (in.readByte() == 0) {
@@ -142,15 +111,15 @@ public class ResultComics implements Parcelable {
         variantDescription = in.readString();
     }
 
-    public static final Creator<ResultComics> CREATOR = new Creator<ResultComics>() {
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
         @Override
-        public ResultComics createFromParcel(Parcel in) {
-            return new ResultComics(in);
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
         }
 
         @Override
-        public ResultComics[] newArray(int size) {
-            return new ResultComics[size];
+        public Result[] newArray(int size) {
+            return new Result[size];
         }
     };
 

@@ -12,17 +12,18 @@ import retrofit2.http.Query;
 public interface MarvelAPI {
 
     @GET("comics?")
-    Observable<ComicsResult> getAllComics(@Query("format")String format,
+    Observable<ComicsResult> getAllComics(@Query("offset")int pagina,
+                                          @Query("format")String format,
                                           @Query("formatType")String formatType,
                                           @Query("noVariants")boolean noVariants,
                                           @Query("orderBy") String orderBy,
                                           @Query("ts") String ts,
                                           @Query("hash") String hash,
-                                          @Query("apiKey") String apikey);
+                                          @Query("apikey") String apikey);
 
     @GET ("characters?")
     Observable<Personagens> getALLPersonagens(
-
+            @Query("offset")int pagina,
             @Query("orderBy") String orderBy,
             @Query("ts") String ts,
             @Query("hash") String hash,
@@ -42,7 +43,7 @@ public interface MarvelAPI {
 
     @GET ("events?")
     Observable<Eventos> getALLEventos(
-
+            @Query("offset")int pagina,
             @Query("orderBy") String orderBy,
             @Query("ts") String ts,
             @Query("hash") String hash,

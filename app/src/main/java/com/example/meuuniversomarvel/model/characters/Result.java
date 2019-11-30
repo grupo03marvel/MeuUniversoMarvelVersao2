@@ -1,5 +1,5 @@
 
-package com.example.meuuniversomarvel.model.events;
+package com.example.meuuniversomarvel.model.characters;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,37 +13,15 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 
-@Entity(tableName = "eventos")
-public class ResultEvents implements Parcelable {
-    public ResultEvents(Characters characters, Comics comics, Creators creators, String description, String end, @NonNull Long id, String modified, Next next, Previous previous, String resourceURI, Series series, String start, Stories stories, Thumbnail thumbnail, String title, List<Url> urls) {
-        this.characters = characters;
-        this.comics = comics;
-        this.creators = creators;
-        this.description = description;
-        this.end = end;
-        this.id = id;
-        this.modified = modified;
-        this.next = next;
-        this.previous = previous;
-        this.resourceURI = resourceURI;
-        this.series = series;
-        this.start = start;
-        this.stories = stories;
-        this.thumbnail = thumbnail;
-        this.title = title;
-        this.urls = urls;
-    }
+@Entity(tableName = "persons")
+public class Result implements Parcelable {
 
-    @Expose
-    private Characters characters;
     @Expose
     private Comics comics;
     @Expose
-    private Creators creators;
-    @Expose
     private String description;
     @Expose
-    private String end;
+    private Events events;
 
     @Expose
     @PrimaryKey
@@ -52,57 +30,41 @@ public class ResultEvents implements Parcelable {
     @Expose
     private String modified;
     @Expose
-    private Next next;
-    @Expose
-    private Previous previous;
+    private String name;
     @Expose
     private String resourceURI;
     @Expose
     private Series series;
     @Expose
-    private String start;
-    @Expose
     private Stories stories;
     @Expose
     private Thumbnail thumbnail;
     @Expose
-    private String title;
-    @Expose
     private List<Url> urls;
 
-    protected ResultEvents(Parcel in) {
+    protected Result(Parcel in) {
         description = in.readString();
-        end = in.readString();
         if (in.readByte() == 0) {
             id = null;
         } else {
             id = in.readLong();
         }
         modified = in.readString();
+        name = in.readString();
         resourceURI = in.readString();
-        start = in.readString();
-        title = in.readString();
     }
 
-    public static final Creator<ResultEvents> CREATOR = new Creator<ResultEvents>() {
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
         @Override
-        public ResultEvents createFromParcel(Parcel in) {
-            return new ResultEvents(in);
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
         }
 
         @Override
-        public ResultEvents[] newArray(int size) {
-            return new ResultEvents[size];
+        public Result[] newArray(int size) {
+            return new Result[size];
         }
     };
-
-    public Characters getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(Characters characters) {
-        this.characters = characters;
-    }
 
     public Comics getComics() {
         return comics;
@@ -110,14 +72,6 @@ public class ResultEvents implements Parcelable {
 
     public void setComics(Comics comics) {
         this.comics = comics;
-    }
-
-    public Creators getCreators() {
-        return creators;
-    }
-
-    public void setCreators(Creators creators) {
-        this.creators = creators;
     }
 
     public String getDescription() {
@@ -128,12 +82,12 @@ public class ResultEvents implements Parcelable {
         this.description = description;
     }
 
-    public String getEnd() {
-        return end;
+    public Events getEvents() {
+        return events;
     }
 
-    public void setEnd(String end) {
-        this.end = end;
+    public void setEvents(Events events) {
+        this.events = events;
     }
 
     public Long getId() {
@@ -152,20 +106,12 @@ public class ResultEvents implements Parcelable {
         this.modified = modified;
     }
 
-    public Next getNext() {
-        return next;
+    public String getName() {
+        return name;
     }
 
-    public void setNext(Next next) {
-        this.next = next;
-    }
-
-    public Previous getPrevious() {
-        return previous;
-    }
-
-    public void setPrevious(Previous previous) {
-        this.previous = previous;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getResourceURI() {
@@ -184,14 +130,6 @@ public class ResultEvents implements Parcelable {
         this.series = series;
     }
 
-    public String getStart() {
-        return start;
-    }
-
-    public void setStart(String start) {
-        this.start = start;
-    }
-
     public Stories getStories() {
         return stories;
     }
@@ -206,14 +144,6 @@ public class ResultEvents implements Parcelable {
 
     public void setThumbnail(Thumbnail thumbnail) {
         this.thumbnail = thumbnail;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public List<Url> getUrls() {
@@ -232,7 +162,6 @@ public class ResultEvents implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(description);
-        parcel.writeString(end);
         if (id == null) {
             parcel.writeByte((byte) 0);
         } else {
@@ -240,8 +169,7 @@ public class ResultEvents implements Parcelable {
             parcel.writeLong(id);
         }
         parcel.writeString(modified);
+        parcel.writeString(name);
         parcel.writeString(resourceURI);
-        parcel.writeString(start);
-        parcel.writeString(title);
     }
 }

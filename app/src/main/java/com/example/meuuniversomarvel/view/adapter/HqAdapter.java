@@ -1,4 +1,4 @@
-/*
+
 package com.example.meuuniversomarvel.view.adapter;
 
 import android.view.LayoutInflater;
@@ -13,20 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.comics.Image;
 import com.example.meuuniversomarvel.model.comics.Item;
-import com.example.meuuniversomarvel.view.interfaces.OnClick;
+import com.example.meuuniversomarvel.model.comics.Result;
+import com.example.meuuniversomarvel.view.interfaces.HqsOnClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
+    private List<Result> hqsList;
+    private List<Image> hqsListImagem;
+    private HqsOnClick listener;
 
-    private List<Item> hqsList;
-    private OnClick listener;
-
-    public HqAdapter(List<Item> hqsList, OnClick listener) {
+    public HqAdapter(List<Result> hqsList, HqsOnClick listener) {
         this.hqsList = hqsList;
         this.listener = listener;
     }
+
+    public HqAdapter(List<Result> hqsList) {
+        this.hqsList = hqsList;
+    }
+
 
     @NonNull
     @Override
@@ -37,17 +43,27 @@ public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Item item = hqsList.get(position);
-        Image imagem = hqsList.get(position);
-        holder.onBind(item, imagem);
+        Result result = hqsList.get(position);
+        holder.onBind(result);
 
-        holder.itemView.setOnClickListener(v -> listener.click(item, imagem));
+        holder.itemView.setOnClickListener(v -> listener.click(result));
     }
 
     @Override
     public int getItemCount() {
         return hqsList.size();
     }
+
+
+    public void atualizaLista(List<Result> novaLista){
+        if (this.hqsList.isEmpty()){
+            this.hqsList = novaLista;
+        }else {
+            this.hqsList.addAll(novaLista);
+        }
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -61,12 +77,12 @@ public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
             textView = itemView.findViewById(R.id.nomeItem);
         }
 
-        public void onBind(Item item, Image imagem){
-            textView.setText(item.getName());
+        public void onBind(Result result){
+            textView.setText(result.getTitle());
 
-            Picasso.get().load("http://i.annihil.us/u/prod/marvel/i/mg/"+imagem.getPath()).into(imageView);
+            Picasso.get().load(result.getThumbnail().getPath()+ ".jpg").into(imageView);
         }
 
     }
 }
-*/
+
