@@ -8,6 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.meuuniversomarvel.data.local.Database;
+import com.example.meuuniversomarvel.data.local.dao.PersonagemDAO;
 import com.example.meuuniversomarvel.model.characters.Personagens;
 import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
@@ -26,6 +28,8 @@ public class PersonagemViewModel extends AndroidViewModel {
     private MutableLiveData<List<ResultCharacters>> listaPersona = new MutableLiveData<>();
     private PersonagemRepository Repository = new PersonagemRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
+    private PersonagemDAO personagemDAO = Database.getDatabase(getApplication()).personagemDAO();
+
 
     public static final String PUBLIC_KEY = "fe81c0a4bd6c7f00e3df25d68d8d8a92";
 
@@ -64,5 +68,14 @@ public class PersonagemViewModel extends AndroidViewModel {
                             Log.i("LOG", "Error: " + throwable.getMessage());
                         }));
     }
-}
 
+    public void insereCharacyers(ResultCharacters characters){
+        new Thread(() -> {
+            if (characters != null){
+                personagemDAO.insert(characters);
+            }
+        }).start();
+
+        this.listaPersona.setValue(characters);
+    }
+}

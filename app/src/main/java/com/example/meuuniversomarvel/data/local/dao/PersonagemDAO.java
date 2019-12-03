@@ -16,6 +16,7 @@ import io.reactivex.Observable;
 
 @Dao
 public interface PersonagemDAO {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ResultCharacters person);
 

@@ -8,6 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.meuuniversomarvel.data.local.Database;
+import com.example.meuuniversomarvel.data.local.dao.EventoDAO;
 import com.example.meuuniversomarvel.model.events.Eventos;
 import com.example.meuuniversomarvel.model.events.ResultEvents;
 import com.example.meuuniversomarvel.repository.EventosRepository;
@@ -23,9 +25,10 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class EventosViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<ResultEvents>> listaCriadores = new MutableLiveData<>();
+    private MutableLiveData<List<ResultEvents>> listaEventos = new MutableLiveData<>();
     private EventosRepository repositpory = new EventosRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
+    private EventoDAO eventoDAO = Database.getDatabase(getApplication()).eventDAO();
 
     public static final String PUBLIC_KEY = "fe81c0a4bd6c7f00e3df25d68d8d8a92";
 
@@ -41,7 +44,7 @@ public class EventosViewModel extends AndroidViewModel {
 
 
     public LiveData<List<ResultEvents>> getListaEventos(){
-        return this.listaCriadores;
+        return this.listaEventos;
     }
 
     public void getEventos() {
@@ -57,12 +60,22 @@ public class EventosViewModel extends AndroidViewModel {
                             @Override
                             public void accept(Eventos eventos) throws Exception {
 
-                                listaCriadores.setValue(eventos.getData().getResults());
+                                listaEventos.setValue(eventos.getData().getResults());
                             }
                         }, throwable -> {
 
                             Log.i("LOG", "Error: " + throwable.getMessage());
                         }));
+    }
+
+    public void insereEventos(ResultEvents events){
+        new Thread(() -> {
+            if (events != null){
+                eventoDAO.insert(events);
+            }
+        }).start();
+
+        this.listaEventos.setValue(events);
     }
 }
 
