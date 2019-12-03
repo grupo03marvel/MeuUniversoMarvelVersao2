@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "905284510583-h3tdafe8l1lkn96lv1eftvclc1k6fd18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meuuniversomarvel",
+            "certificate_hash": "0eef01212da0579d59f6ef12e5ec2bab3f528bcf"
+          }
+        },
+        {
           "client_id": "905284510583-6dup434a0kqo16rcckvle7q9q788ra15.apps.googleusercontent.com",
           "client_type": 3
         }
