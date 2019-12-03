@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MeuUniversoMarvel</string>
+
+    <string name="facebook_app_id">1017634365249551</string>
+    <string name="fb_login_protocol_scheme">fb1017634365249551</string>
+    <string name="description">description</string>
+
+    <string name="title_activity_recuperar__senha_email">Recuperar_SenhaEmail</string>
+    <string name="autoresNav">Autores</string>
+    <string name="personagensNavBottom">Personagens</string>
+    <string name="hqsNav">HQ\'s</string>
+    <string name="eventosNav">Eventos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholderNomeItemCat">Título HQ</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_favoritos">FavoritosActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>
