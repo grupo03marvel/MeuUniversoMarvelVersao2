@@ -2,7 +2,9 @@
     <string name="app_name">MeuUniversoMarvel</string>
 
     <string name="facebook_app_id">1017634365249551</string>
-    <string name="fb_login_protocol_scheme">fb1017634365249551</string>
+    <string name="fb_login_protocol_scheme">1017634365249551</string>
+
+
     <string name="description">description</string>
 
     <string name="title_activity_recuperar__senha_email">Recuperar_SenhaEmail</string>
