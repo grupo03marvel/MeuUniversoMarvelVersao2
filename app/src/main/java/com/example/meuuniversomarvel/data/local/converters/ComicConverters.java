@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.List;
 
 public class ComicConverters {
@@ -121,20 +120,6 @@ public class ComicConverters {
 
     // Type converter
     @TypeConverter
-    public List<Collection> fromListCollection(String value) {
-        Type listType = (Type) new TypeToken<List<Collection>>() {
-        }.getType();
-        return new Gson().fromJson(value, listType);
-    }
-
-    @TypeConverter
-    public String fromListCollection(List<Collection> list) {
-        Gson gson = new Gson();
-        return gson.toJson(list);
-    }
-
-    // Type converter
-    @TypeConverter
     public List<Date> fromListDate(String value) {
         Type listType = (Type) new TypeToken<List<Date>>() {
         }.getType();
@@ -176,6 +161,19 @@ public class ComicConverters {
         return gson.toJson(list);
     }
 
+    @TypeConverter
+    public List<Object> fromListObject(String value) {
+        Type listType = (Type) new TypeToken<List<TextObject>>() {
+        }.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public String fromListObject(List<Object> list) {
+        Gson gson = new Gson();
+        return gson.toJson(list);
+    }
+
     // Type converter
     @TypeConverter
     public List<Price> fromListPrice(String value) {
@@ -189,5 +187,4 @@ public class ComicConverters {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
-
 }

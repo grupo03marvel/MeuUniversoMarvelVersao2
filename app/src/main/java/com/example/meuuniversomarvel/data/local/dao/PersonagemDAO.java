@@ -5,46 +5,43 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.TypeConverter;
 import androidx.room.Update;
 
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
+@Dao
+public interface PersonagemDAO {
 
-//public interface PersonagemDAO {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(ResultCharacters person);
 
-/*    @Insert(onConflict = OnConflictStrategy.REPLACE)*/
-/*    void insert(Result person);*/
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<ResultCharacters> perso);
 
-/*    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Result> perso);*/
-
-/*
     @Update
-    void update(Result person);
+    void update(ResultCharacters person);
 
     @Delete
-    void delete(Result person);
-*/
+    void delete(ResultCharacters person);
 
-/*    @Query("DELETE FROM persons")
-    void deleteAll();*/
+    @Query("DELETE FROM perso")
+    void deleteAll();
 
-/*    @Query("SELECT * FROM persons")
-    List<Result> getAll();*/
+    @Query("SELECT * FROM perso")
+    List<ResultCharacters> getAll();
 
-/*    @Query("SELECT * FROM persons")*//**//*
-    Observable<List<Result>> getAllRxJava();*/
+    @Query("SELECT * FROM perso")
+    Observable<List<ResultCharacters>> getAllCharactes();
 
-/*    @Query("SELECT * FROM comics WHERE id = :id ORDER BY id")
-    Result getById(String id);*/
+    @Query("SELECT * FROM perso WHERE id = :id ORDER BY id")
+    ResultCharacters getById(String id);
 
-/*    @Query("SELECT * FROM comics WHERE title = :title")
-    Result getByTitle(String title);*/
-//}
+    @Query("SELECT * FROM perso WHERE name = :name")
+    ResultCharacters getByTitle(String name);
+}
 

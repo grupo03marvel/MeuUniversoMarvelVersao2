@@ -52,5 +52,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagemBannerEventos" />
 
+    <ImageView
+        android:id="@+id/icone_de_favoritar"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDetalheEventos"
+        app:srcCompat="@drawable/bem_estar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

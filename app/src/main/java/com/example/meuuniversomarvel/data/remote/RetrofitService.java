@@ -1,6 +1,7 @@
 package com.example.meuuniversomarvel.data.remote;
 
-import com.example.meuuniversomarvel.BuildConfig;
+import com.facebook.stetho.okhttp3.BuildConfig;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +33,7 @@ public class RetrofitService {
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 httpClient.addInterceptor(httpLoggingInterceptor);
+                httpClient.addNetworkInterceptor(new StethoInterceptor());
             }
 
             // inicializamos o retrofit com as configurações

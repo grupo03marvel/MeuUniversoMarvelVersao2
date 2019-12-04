@@ -1,13 +1,16 @@
 
 package com.example.meuuniversomarvel.model.events;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
 
 @SuppressWarnings("unused")
-public class Comics {
+public class Comics implements Parcelable {
 
     @Expose
     private Long available;
@@ -17,6 +20,32 @@ public class Comics {
     private List<Item> items;
     @Expose
     private Long returned;
+
+    protected Comics(Parcel in) {
+        if (in.readByte() == 0) {
+            available = null;
+        } else {
+            available = in.readLong();
+        }
+        collectionURI = in.readString();
+        if (in.readByte() == 0) {
+            returned = null;
+        } else {
+            returned = in.readLong();
+        }
+    }
+
+    public static final Creator<Comics> CREATOR = new Creator<Comics>() {
+        @Override
+        public Comics createFromParcel(Parcel in) {
+            return new Comics(in);
+        }
+
+        @Override
+        public Comics[] newArray(int size) {
+            return new Comics[size];
+        }
+    };
 
     public Long getAvailable() {
         return available;
@@ -50,4 +79,25 @@ public class Comics {
         this.returned = returned;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (available == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(available);
+        }
+        parcel.writeString(collectionURI);
+        if (returned == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(returned);
+        }
+    }
 }

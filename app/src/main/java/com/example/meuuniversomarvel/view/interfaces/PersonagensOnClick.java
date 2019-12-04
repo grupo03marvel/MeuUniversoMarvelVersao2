@@ -1,8 +1,8 @@
 package com.example.meuuniversomarvel.view.interfaces;
 
-import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 
 public interface PersonagensOnClick {
 
-    void personagemOnClick(Result result);
+    void personagemOnClick(ResultCharacters resultCharacters);
 }

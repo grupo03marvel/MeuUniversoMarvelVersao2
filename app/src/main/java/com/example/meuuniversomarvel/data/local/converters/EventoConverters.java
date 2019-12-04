@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.List;
 
 public class EventoConverters {
@@ -36,14 +35,14 @@ public class EventoConverters {
     }
 
     @TypeConverter
-    public List<Comics> fromListPrice(String value) {
-        Type listType = (Type) new TypeToken<List<Comics>>() {
+    public Next fromNext(String value) {
+        Type listType = (Type) new TypeToken<Characters>() {
         }.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public String fromListPrice(List<Comics> list) {
+    public String fromNext(Next list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
@@ -58,20 +57,6 @@ public class EventoConverters {
 
     @TypeConverter
     public String fromCreators(Creators list) {
-        Gson gson = new Gson();
-        return gson.toJson(list);
-    }
-
-    // Type converter
-    @TypeConverter
-    public List<Next> fromListDate(String value) {
-        Type listType = (Type) new TypeToken<List<Next>>() {
-        }.getType();
-        return new Gson().fromJson(value, listType);
-    }
-
-    @TypeConverter
-    public String fromListDate(List<Next> list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
@@ -120,14 +105,14 @@ public class EventoConverters {
 
     // Type converter
     @TypeConverter
-    public Eventos fromEvents(String value) {
+    public Eventos fromEventos(String value) {
         Type listType = (Type) new TypeToken<Eventos>() {
         }.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public String fromEvents(Eventos list) {
+    public String fromEventos(Eventos list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
@@ -148,47 +133,45 @@ public class EventoConverters {
 
     // Type converter
     @TypeConverter
-    public List<Collection> fromListCollection(String value) {
-        Type listType = (Type) new TypeToken<List<Collection>>() {
-        }.getType();
-        return new Gson().fromJson(value, listType);
-    }
-
-    @TypeConverter
-    public String fromListCollection(List<Collection> list) {
-        Gson gson = new Gson();
-        return gson.toJson(list);
-    }
-
-
-    // Type converter
-    @TypeConverter
-    public List<Data> fromListImage(String value) {
+    public List<Data> fromDATA(String value) {
         Type listType = (Type) new TypeToken<List<Data>>() {
         }.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public String fromListImage(List<Data> list) {
+    public String fromDATA(List<Data> list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
 
 
-    // Type converter
     @TypeConverter
-    public List<Previous> fromListTextObject(String value) {
-        Type listType = (Type) new TypeToken<List<Previous>>() {
+    public Comics fromComics(String value) {
+        Type listType = (Type) new TypeToken<Comics>() {
         }.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public String fromListTextObject(List<Previous> list) {
+    public String fromComics(Comics list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
+
+    @TypeConverter
+    public Previous fromPrevious(String value) {
+        Type listType = (Type) new TypeToken<Previous>() {
+        }.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public String fromPrevious(Previous list) {
+        Gson gson = new Gson();
+        return gson.toJson(list);
+    }
+
 
 }
 

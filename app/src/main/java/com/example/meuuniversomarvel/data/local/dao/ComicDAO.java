@@ -1,43 +1,46 @@
 package com.example.meuuniversomarvel.data.local.dao;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.meuuniversomarvel.model.comics.Result;
+import com.example.meuuniversomarvel.model.comics.ResultComics;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
+@Dao
 public interface ComicDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Result comic);
+    void insert(ResultComics comic);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Result> comics);
+    void insertAll(List<ResultComics> comics);
 
     @Update
-    void update(Result comic);
+    void update(ResultComics comic);
 
     @Delete
-    void delete(Result comic);
+    void delete(ResultComics comic);
 
-    @Query("DELETE FROM comics")
+    @Query("DELETE FROM Comics")
     void deleteAll();
 
-    @Query("SELECT * FROM comics")
-    List<Result> getAll();
+    @Query("SELECT * FROM Comics")
+    List<ResultComics> getAll();
 
-    @Query("SELECT * FROM comics")
-    Flowable<List<Result>> getAllRxJava();
+    @Query("SELECT * FROM Comics")
+    Flowable<List<ResultComics>> getAllComics();
 
-    @Query("SELECT * FROM comics WHERE id = :id ORDER BY id")
-    Result getById(String id);
+    @Query("SELECT * FROM Comics WHERE id = :id ORDER BY id")
+    ResultComics getById(String id);
 
-    @Query("SELECT * FROM comics WHERE title = :title")
-    Result getByTitle(String title);
+    @Query("SELECT * FROM Comics WHERE title = :title")
+    ResultComics getByTitle(String title);
 }

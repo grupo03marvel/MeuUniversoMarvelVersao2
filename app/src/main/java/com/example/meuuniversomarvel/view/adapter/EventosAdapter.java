@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.model.events.ResultEvents;
 import com.example.meuuniversomarvel.view.interfaces.EventosOnClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHolder> {
-    private List<Result> resultList;
+    private List<ResultEvents> resultList;
     private EventosOnClick listener;
 
-    public EventosAdapter(List<Result> resultList, EventosOnClick listener) {
-        this.resultList = resultList;
+    public EventosAdapter(List<ResultEvents> resultEventsList, EventosOnClick listener) {
+        this.resultList = resultEventsList;
         this.listener = listener;
     }
 
@@ -34,7 +34,7 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Result result = resultList.get(position);
+        final ResultEvents result = resultList.get(position);
         holder.onBind(result);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         return resultList.size();
     }
 
-    public void atualizaListaE(List<Result> novaLista){
+    public void atualizaListaE(List<ResultEvents> novaLista){
         if (this.resultList.isEmpty()){
             this.resultList = novaLista;
         }else {
@@ -71,10 +71,10 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
             imagemEvento = itemView.findViewById(R.id.imgItem);
         }
 
-        public void onBind(Result result) {
-            Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imagemEvento);
+        public void onBind(ResultEvents resultEvents) {
+            Picasso.get().load(resultEvents.getThumbnail().getPath() + ".jpg").into(imagemEvento);
 
-            nomeEvento.setText(result.getTitle());
+            nomeEvento.setText(resultEvents.getTitle());
 
 
         }
