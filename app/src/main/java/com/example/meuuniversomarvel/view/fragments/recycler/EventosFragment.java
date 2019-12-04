@@ -38,7 +38,7 @@ public class EventosFragment extends Fragment implements EventosOnClick {
     private ProgressBar progressBar;
 
 
-    private int pagina = 0;
+    private int pagina = 1;
 
     public EventosFragment() {
         // Required empty public constructor
@@ -119,7 +119,7 @@ public class EventosFragment extends Fragment implements EventosOnClick {
 
                 int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
 
-                boolean ultimoItem = lastVisible + 5 >= totalItemCount;
+                boolean ultimoItem = lastVisible + 19 >= totalItemCount;
 
                 if (totalItemCount > 0 && ultimoItem){
                     pagina++;
