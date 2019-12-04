@@ -139,19 +139,23 @@ public class HomeActivity extends AppCompatActivity {
                 menu = menuItem.getItemId();
 
                 if (id == R.id.nav_hqs_barra) {
-
+                    menu = R.id.nav_quadrinhos;
                     HomeActivity.this.replaceFragment(new HqsFragment());
 
-                } else if (id == R.id.nav_personagens_barra) {
 
+                } else if (id == R.id.nav_personagens_barra) {
+                    menu = R.id.nav_personagens;
                     HomeActivity.this.replaceFragment(new PersonagensFragment());
 
-                } else if (id == R.id.nav_autores_barra) {
 
+                } else if (id == R.id.nav_autores_barra) {
+                    menu = R.id.nav_autores;
                     HomeActivity.this.replaceFragment(new AutoresFragment());
+
 
                 } else if (id == R.id.nav_eventos_barra) {
 
+                    menu = R.id.nav_series;
                     HomeActivity.this.replaceFragment(new EventosFragment());
 
                 }

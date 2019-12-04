@@ -16,7 +16,7 @@ public class Data {
     @Expose
     private Long offset;
     @Expose
-    private List<ResultCharacters> results;
+    private List<Result> results;
     @Expose
     private Long total;
 
@@ -44,12 +44,12 @@ public class Data {
         this.offset = offset;
     }
 
-    public List<ResultCharacters> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setResults(List<ResultCharacters> resultCharacters) {
-        this.results = resultCharacters;
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     public Long getTotal() {

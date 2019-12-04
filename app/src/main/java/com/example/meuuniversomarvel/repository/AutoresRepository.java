@@ -1,9 +1,6 @@
 package com.example.meuuniversomarvel.repository;
 
-
 import com.example.meuuniversomarvel.model.creators.Criadores;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 

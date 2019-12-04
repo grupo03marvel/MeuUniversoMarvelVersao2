@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     private ImageButton imageButtonGoogle;
     private SignInButton btnLoginGoogle;
     private CallbackManager callbackManager;
-    private static final int RC_SIGN_IN = 1001;
     public static final String GOOGLE_ACCOUNT = "google_account";
     private GoogleSignInClient googleSignInClient;
 
@@ -190,7 +189,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
         super.onActivityResult(requestCode, resultCode, data);
+
 
         //Verifica se o valor do resultCode é igual a constante RESULT_OK
         if (resultCode == Activity.RESULT_OK) {
