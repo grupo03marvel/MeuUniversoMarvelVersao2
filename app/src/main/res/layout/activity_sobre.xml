@@ -81,11 +81,10 @@
         android:layout_marginBottom="368dp"
 
         android:gravity="center"
-        android:text="Sobre este APP"
-        android:fontFamily="@font/marvel"
-        android:textAllCaps="true"
+        android:text="Sobre este aplicativo"
         android:background="@color/vermelho"
-        android:textSize="50sp"
+        android:textSize="30dp"
+        android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
