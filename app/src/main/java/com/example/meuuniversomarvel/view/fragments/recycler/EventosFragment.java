@@ -3,6 +3,7 @@ package com.example.meuuniversomarvel.view.fragments.recycler;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.events.Result;
@@ -33,7 +35,10 @@ public class EventosFragment extends Fragment implements EventosOnClick {
     private RecyclerView recyclerView;
     private EventosAdapter adapter;
     public static final String EVENTOS_KEY = "Eventos";
+    private ProgressBar progressBar;
 
+
+    private int pagina = 1;
 
     public EventosFragment() {
         // Required empty public constructor
@@ -50,12 +55,20 @@ public class EventosFragment extends Fragment implements EventosOnClick {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        setScrollView();
 
-
-        viewModel.getEventos();
+        viewModel.getEventos(pagina);
         viewModel.getListaEventos().observe(this, results1 -> {
             adapter.atualizaListaE(results1);
 
+        });
+
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading){
+                progressBar.setVisibility(View.VISIBLE);
+            }else {
+                progressBar.setVisibility(View.GONE);
+            }
         });
 
 
@@ -66,6 +79,8 @@ public class EventosFragment extends Fragment implements EventosOnClick {
         recyclerView = view.findViewById(R.id.recycler_eventos);
         viewModel = ViewModelProviders.of(this).get(EventosViewModel.class);
         adapter = new EventosAdapter(results, this);
+        progressBar = view.findViewById(R.id.progress_bar);
+
     }
 
     @Override
@@ -83,6 +98,37 @@ public class EventosFragment extends Fragment implements EventosOnClick {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.containerPrincipal, fragment);
         transaction.commit();
+    }
+
+    private void setScrollView(){
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState){
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+
+                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+
+                int totalItemCount = gridLayoutManager.getItemCount();
+
+                int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
+
+                boolean ultimoItem = lastVisible + 19 >= totalItemCount;
+
+                if (totalItemCount > 0 && ultimoItem){
+                    pagina++;
+                    viewModel.getEventos(pagina);
+                }
+            }
+
+        });
+
     }
 
 }

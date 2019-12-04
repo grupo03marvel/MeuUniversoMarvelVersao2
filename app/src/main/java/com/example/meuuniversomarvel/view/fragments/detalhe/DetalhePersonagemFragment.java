@@ -43,7 +43,6 @@ public class DetalhePersonagemFragment extends Fragment {
 
             Result result = getArguments().getParcelable(PERSONAGEM_KEY);
 
-            Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFrente);
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);
 
             txtDescricao.setText(result.getDescription());
@@ -56,10 +55,9 @@ public class DetalhePersonagemFragment extends Fragment {
     }
 
     private void initView(View view) {
-        txtDescricao = view.findViewById(R.id.textViewDetalhePersonagem);
-        imgFrente = view.findViewById(R.id.imagePersonagem);
-        imgFundo = view.findViewById(R.id.imageBannerPers);
-        txtNomePer = view.findViewById(R.id.textNomePersonagem);
+        txtDescricao = view.findViewById(R.id.textViewDetalhe);
+        imgFundo = view.findViewById(R.id.imagemBanner);
+        txtNomePer = view.findViewById(R.id.textViewTitulo);
     }
 
 }

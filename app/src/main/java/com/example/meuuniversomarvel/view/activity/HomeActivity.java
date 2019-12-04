@@ -16,11 +16,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.meuuniversomarvel.model.favoritos.Favoritos;
 import com.example.meuuniversomarvel.view.fragments.recycler.AutoresFragment;
 import com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment;
 import com.example.meuuniversomarvel.view.fragments.recycler.HqsFragment;
 import com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment;
 import com.example.meuuniversomarvel.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,6 +32,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
+    private GoogleSignInClient googleSignInClient;
+
+
+    int menu = R.id.nav_quadrinhos;
 
     public static final String MH_KEY = "modeloHome";
 
@@ -52,16 +60,25 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens,
-                R.id.nav_favoritos, R.id.nav_series, R.id.nav_autores)
+                R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens, R.id.nav_favoritos)
                 .setDrawerLayout(drawer)
                 .build();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
 
+                //Ação que traz os dados Default do usuário selecionado na hora do login
+                GoogleSignInOptions gso = new GoogleSignInOptions
+                        .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
+
+                //Atribuição paraa  o objeto o valor do login recebido
+                googleSignInClient = GoogleSignIn.getClient(HomeActivity.this, gso);
+
+                int id = menuItem.getItemId();
+                menu = menuItem.getItemId();
 
                 if (id == R.id.nav_quadrinhos) {
                     replaceFragment(new HqsFragment());
@@ -72,10 +89,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
 
-                if (id == R.id.nav_autores) {
-                    replaceFragment(new AutoresFragment());
-
-                }
 
                 if (id == R.id.nav_series) {
                     replaceFragment(new EventosFragment());
@@ -95,8 +108,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 if (id == R.id.nav_logout) {
-                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    googleSignInClient.signOut().addOnCompleteListener(task -> {
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    });
                 }
 
 
@@ -106,7 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_hqs_barra, R.id.nav_personagens_barra, R.id.nav_autores_barra,
+                R.id.nav_hqs_barra, R.id.nav_personagens_barra, R.id.nav_favoritos_barra,
                 R.id.nav_eventos_barra)
                         .build();
 
@@ -115,23 +132,25 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 int id = menuItem.getItemId();
+                menu = menuItem.getItemId();
 
                 if (id == R.id.nav_hqs_barra) {
-
+                    menu = R.id.nav_quadrinhos;
                     HomeActivity.this.replaceFragment(new HqsFragment());
 
-                } else if (id == R.id.nav_personagens_barra) {
 
+                } else if (id == R.id.nav_personagens_barra) {
+                    menu = R.id.nav_personagens;
                     HomeActivity.this.replaceFragment(new PersonagensFragment());
 
-                } else if (id == R.id.nav_autores_barra) {
-
-                    HomeActivity.this.replaceFragment(new AutoresFragment());
 
                 } else if (id == R.id.nav_eventos_barra) {
 
+                    menu = R.id.nav_series;
                     HomeActivity.this.replaceFragment(new EventosFragment());
 
+                } else if (id == R.id.nav_favoritos_barra) {
+                    startActivity(new Intent(HomeActivity.this, FavoritosActivity.class));
                 }
 
                 return true;
@@ -142,16 +161,25 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
+        if (menu == R.id.nav_quadrinhos) {
+            replaceFragment(new HqsFragment());
         }
-        else{super.onBackPressed();}
+
+        if (menu == R.id.nav_personagens) {
+            replaceFragment(new PersonagensFragment());
+
+        }
+
+
+
+        if (menu == R.id.nav_series) {
+            replaceFragment(new EventosFragment());
+
+        }
+
+
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -168,6 +196,7 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
 
 }

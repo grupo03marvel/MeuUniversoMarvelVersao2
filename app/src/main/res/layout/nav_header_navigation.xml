@@ -15,45 +15,21 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="109dp"
-        android:layout_height="127dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="168dp"
+        android:layout_marginEnd="118dp"
 
         android:clickable="false"
         android:contentDescription="@string/nav_header_desc"
         android:cropToPadding="false"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.637"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shield_logo" />
-
-    <TextView
-        android:layout_width="242dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:fontFamily="@font/marvel"
-        android:gravity="center"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="PERFIL"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="39dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="241dp"
-        android:layout_height="69dp"
-        android:gravity="center"
-        android:text="nome"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        app:srcCompat="@drawable/shield_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

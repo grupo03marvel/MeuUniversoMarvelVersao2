@@ -13,7 +13,7 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 
-@Entity(tableName = "perso")
+@Entity(tableName = "persons")
 public class Result implements Parcelable {
 
     @Expose
