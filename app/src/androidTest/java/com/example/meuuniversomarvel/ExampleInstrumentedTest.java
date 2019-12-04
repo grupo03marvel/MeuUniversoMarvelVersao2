@@ -3,12 +3,20 @@ package com.example.meuuniversomarvel;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
+<<<<<<< HEAD
 import androidx.test.runner.AndroidJUnit4;
+=======
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+>>>>>>> origin/development
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
+=======
+import static org.junit.Assert.*;
+>>>>>>> origin/development
 
 /**
  * Instrumented test, which will execute on an Android device.

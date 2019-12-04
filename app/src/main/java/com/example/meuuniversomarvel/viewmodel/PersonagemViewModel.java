@@ -8,6 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.meuuniversomarvel.model.characters.Personagens;
+import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.data.local.Database;
 import com.example.meuuniversomarvel.data.local.dao.PersonagemDAO;
 import com.example.meuuniversomarvel.model.characters.Personagens;
@@ -25,6 +27,10 @@ import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
 public class PersonagemViewModel extends AndroidViewModel {
 
+    private MutableLiveData<List<Result>> listaPersona = new MutableLiveData<>();
+    private PersonagemRepository Repository = new PersonagemRepository();
+    private CompositeDisposable disposable = new CompositeDisposable();
+    private MutableLiveData<Boolean> loading = new MutableLiveData<>();
     private MutableLiveData<List<ResultCharacters>> listaPersona = new MutableLiveData<>();
     private PersonagemRepository Repository = new PersonagemRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
@@ -43,6 +49,18 @@ public class PersonagemViewModel extends AndroidViewModel {
         super(application);
     }
 
+    public LiveData<List<Result>> getListaPersonagem(){
+        return this.listaPersona;
+    }
+
+    public LiveData<Boolean> getLoading(){
+        return this.loading;
+    }
+
+    public void getPersonagens(int pagina) {
+
+        disposable.add(
+                Repository.getPersonagemRepositori(pagina,"name", ts, hash, PUBLIC_KEY)
 
     public LiveData<List<ResultCharacters>> getListaPersonagem(){
         return this.listaPersona;
@@ -56,7 +74,8 @@ public class PersonagemViewModel extends AndroidViewModel {
                         .subscribeOn(Schedulers.newThread())
 
                         .observeOn(AndroidSchedulers.mainThread())
-
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
                         .subscribe(new Consumer<Personagens>() {
                             @Override
                             public void accept(Personagens personagem) throws Exception {

@@ -1,6 +1,9 @@
 package com.example.meuuniversomarvel.view.fragments.recycler;
 
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;

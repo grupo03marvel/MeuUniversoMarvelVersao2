@@ -1,6 +1,5 @@
 package com.example.meuuniversomarvel.repository;
 
-import android.content.Context;
 
 import com.example.meuuniversomarvel.model.creators.Criadores;
 
@@ -21,5 +20,4 @@ public class AutoresRepository {
 
         return getApiService().getALLCriadores(orderBy, ts, hash, apikey);
     }
-
 }

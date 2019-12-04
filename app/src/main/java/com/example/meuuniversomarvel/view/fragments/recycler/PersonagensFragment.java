@@ -3,6 +3,7 @@ package com.example.meuuniversomarvel.view.fragments.recycler;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
+import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.view.adapter.PersonagemAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
@@ -29,11 +31,15 @@ import java.util.List;
  */
 public class PersonagensFragment extends Fragment implements PersonagensOnClick {
 
-    private List<ResultCharacters> results = new ArrayList<>();
+    private List<Result> results = new ArrayList<>();
     private PersonagemAdapter adapter;
     private RecyclerView recyclerView;
     private PersonagemViewModel viewModel;
     public static final String PERSONAGEM_KEY = "Personagem";
+    private ProgressBar progressBar;
+
+
+    private int pagina = 0;
 
 
     public PersonagensFragment() {
@@ -50,12 +56,20 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        setScrollView();
 
-
-        viewModel.getPersonagens();
+        viewModel.getPersonagens(pagina);
         viewModel.getListaPersonagem().observe(this, results1 -> {
             adapter.atualizaListaP(results1);
 
+        });
+
+        viewModel.getLoading().observe(this, loading -> {
+            if (loading){
+                progressBar.setVisibility(View.VISIBLE);
+            }else {
+                progressBar.setVisibility(View.GONE);
+            }
         });
 
 
@@ -66,13 +80,15 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         recyclerView = view.findViewById(R.id.recycler_personagens);
         viewModel = ViewModelProviders.of(this).get(PersonagemViewModel.class);
         adapter = new PersonagemAdapter(results, this);
+        progressBar = view.findViewById(R.id.progress_bar);
+
     }
 
 
     @Override
-    public void personagemOnClick(ResultCharacters resultCharacters) {
+    public void personagemOnClick(Result result) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(PERSONAGEM_KEY, resultCharacters);
+        bundle.putParcelable(PERSONAGEM_KEY, result);
 
         Fragment detalheFragment = new DetalhePersonagemFragment();
         detalheFragment.setArguments(bundle);
@@ -86,4 +102,36 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         transaction.commit();
     }
 
+    private void setScrollView(){
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState){
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+
+                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+
+                int totalItemCount = gridLayoutManager.getItemCount();
+
+                int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
+
+                boolean ultimoItem = lastVisible + 5 >= totalItemCount;
+
+                if (totalItemCount > 0 && ultimoItem){
+                    pagina++;
+                    viewModel.getPersonagens(pagina);
+                }
+            }
+
+        });
+
+    }
+
 }
+
