@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.example.meuuniversomarvel.util.AppUtils.md5;
 
-public class PersonagemViewModel extends AndroidViewModel {
+public class   PersonagemViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Result>> listaPersona = new MutableLiveData<>();
     private PersonagemRepository Repository = new PersonagemRepository();
