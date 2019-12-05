@@ -7,7 +7,7 @@
 
 
     tools:context=".view.activity.CadastroActivity"
-    android:background="#E1001D">
+    android:background="@color/cor_Azul">
 
 
     <ImageView

@@ -43,7 +43,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usuário"
+            android:hint="Email"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/branco" />
     </com.google.android.material.textfield.TextInputLayout>

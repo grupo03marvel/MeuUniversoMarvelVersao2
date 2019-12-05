@@ -42,14 +42,12 @@ public class CadastroActivity extends AppCompatActivity {
                 String nome= nomeCadastro.getEditText().getText().toString();
                 String senha = senhaCadastro.getEditText().getText().toString();
                 String email = emailCadastro.getEditText().getText().toString();
-                String idade = idadeCadastro.getEditText().getText().toString();
 
-                try{idadenumero = Integer.valueOf(idade);}catch(NumberFormatException ex){
-                    idadenumero = -1;
-                }
 
-                if (validaCampos(nome, senha, email, idade)){
-                    registrarUsuario(nome, senha, email, idade);
+
+
+                if (validaCampos(nome, senha, email)){
+                    registrarUsuario(nome, senha, email);
                 }
 
 
@@ -59,7 +57,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-    private void registrarUsuario(String nome, String senha, String email, String idade) {
+    private void registrarUsuario(String nome, String senha, String email) {
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -82,19 +80,19 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-    private boolean validaCampos(String nome, String senha, String email, String idade) {
+    private boolean validaCampos(String nome, String senha, String email) {
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            nomeCadastro.setError("Email inválido");
-            nomeCadastro.setErrorEnabled(false);
-            nomeCadastro.requestFocus();
-            Snackbar.make(idadeCadastro, "Email inválido", Snackbar.LENGTH_LONG).show();
+            emailCadastro.setError("Email inválido");
+            emailCadastro.setErrorEnabled(false);
+            emailCadastro.requestFocus();
+            Snackbar.make(emailCadastro, "Email inválido", Snackbar.LENGTH_LONG).show();
             return false;
         } if (email.isEmpty()) {
-            nomeCadastro.setError("O campo email não pode ser vazio");
-            nomeCadastro.setErrorEnabled(false);
-            nomeCadastro.requestFocus();
-            Snackbar.make(idadeCadastro, "O campo email não pode ser vazio", Snackbar.LENGTH_LONG).show();
+            emailCadastro.setError("O campo email não pode ser vazio");
+            emailCadastro.setErrorEnabled(false);
+            emailCadastro.requestFocus();
+            Snackbar.make(emailCadastro, "O campo email não pode ser vazio", Snackbar.LENGTH_LONG).show();
             return false;
         } if (senha.isEmpty()) {
             senhaCadastro.setError("O campo senha não deve ser vazio");
@@ -125,7 +123,6 @@ public class CadastroActivity extends AppCompatActivity {
         nomeCadastro =findViewById(R.id.nomeUsuario);
         senhaCadastro = findViewById(R.id.senhaCadastro);
         emailCadastro = findViewById(R.id.EmailDoUsuario);
-        idadeCadastro = findViewById(R.id.IdadeDoUsuario);
         btnCadastrar = findViewById(R.id.btnRegistroCadastro);
         progressBar = findViewById(R.id.progress_bar);
 
