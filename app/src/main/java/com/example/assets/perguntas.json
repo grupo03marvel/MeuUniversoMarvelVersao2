@@ -1,0 +1,21 @@
+{
+  "perguntas": [
+    {
+      "pergunta": [
+        {
+          "imagem": "imagem1.png",
+          "texto": "Quem é este herói?",
+          "correta": "Homem de Ferro",
+          "respostas": [
+            {
+              "a": "Capitão América",
+              "b": "Homem de Ferro",
+              "c": "Thor",
+              "d": "Gavião Arqueiro"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
