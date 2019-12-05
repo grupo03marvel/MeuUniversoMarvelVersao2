@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
+import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.viewmodel.FavoritosViewModel;
+import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment.PERSONAGEM_KEY;
@@ -22,9 +24,10 @@ import static com.example.meuuniversomarvel.view.fragments.recycler.PersonagensF
  */
 public class DetalhePersonagemFragment extends Fragment {
     private ImageView imgFundo;
-    private ImageView imgFrente;
     private TextView txtDescricao;
     private TextView txtNomePer;
+    private ImageView btnFavoritos;
+    private FavoritosViewModel viewModel;
 
 
     public DetalhePersonagemFragment() {
@@ -39,27 +42,34 @@ public class DetalhePersonagemFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detalhe_personagem, container, false);
         initView(view);
 
+
+
         if (getArguments() != null) {
 
-            ResultCharacters result = getArguments().getParcelable(PERSONAGEM_KEY);
+            Result result = getArguments().getParcelable(PERSONAGEM_KEY);
 
-            Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFrente);
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);
 
             txtDescricao.setText(result.getDescription());
             txtNomePer.setText(result.getName());
 
-        }
+            btnFavoritos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    viewModel.inserePersonagemFavo(result);
+                }
+            });
 
+        }
 
         return view;
     }
 
     private void initView(View view) {
-        txtDescricao = view.findViewById(R.id.textViewDetalhePersonagem);
-        imgFrente = view.findViewById(R.id.imagePersonagem);
-        imgFundo = view.findViewById(R.id.imageBannerPers);
-        txtNomePer = view.findViewById(R.id.textNomePersonagem);
+        btnFavoritos = view.findViewById(R.id.btnImageFavoritos);
+        txtDescricao = view.findViewById(R.id.textViewDetalhe);
+        imgFundo = view.findViewById(R.id.imagemBanner);
+        txtNomePer = view.findViewById(R.id.textViewTitulo);
     }
 
 }

@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.model.events.ResultEvents;
-import com.example.meuuniversomarvel.viewmodel.EventosViewModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.viewmodel.FavoritosViewModel;
+import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment.EVENTOS_KEY;
@@ -26,8 +26,9 @@ public class DetalhesEventosFragment extends Fragment {
     private ImageView imgFundo;
     private TextView txtNome;
     private TextView txtDescricao;
-    private ImageView icoonFavoritos;
-    private EventosViewModel viewModel;
+    private ImageView btnFavoritor;
+
+
 
 
     public DetalhesEventosFragment() {
@@ -40,43 +41,24 @@ public class DetalhesEventosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_detalhes_eventos, container, false);
+
         initView(view);
 
         if (getArguments() != null) {
 
-            ResultEvents result = getArguments().getParcelable(EVENTOS_KEY);
+            Result result = getArguments().getParcelable(EVENTOS_KEY);
 
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);
 
             txtDescricao.setText(result.getDescription());
             txtNome.setText(result.getTitle());
-
         }
-
-        icoonFavoritos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (getArguments() != null) {
-
-                    ResultEvents result = getArguments().getParcelable(EVENTOS_KEY);
-
-                    Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgFundo);
-                    txtNome.setText(result.getTitle());
-
-                    viewModel.insereEventos(result);
-
-                }
-            }
-        });
 
 
         return view;
     }
 
-    private void initView(View view) {
-
-        icoonFavoritos = view.findViewById(R.id.icone_de_favoritar);
+        private void initView(View view) {
         txtDescricao = view.findViewById(R.id.textDetalheEventos);
         imgFundo = view.findViewById(R.id.imagemBannerEventos);
         txtNome = view.findViewById(R.id.textEventos);

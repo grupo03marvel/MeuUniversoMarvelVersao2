@@ -115,7 +115,7 @@ public class HqsFragment extends Fragment implements HqsOnClick {
 
                 int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
 
-                boolean ultimoItem = lastVisible + 5 >= totalItemCount;
+                boolean ultimoItem = lastVisible + 19 >= totalItemCount;
 
                 if (totalItemCount > 0 && ultimoItem){
                     pagina++;

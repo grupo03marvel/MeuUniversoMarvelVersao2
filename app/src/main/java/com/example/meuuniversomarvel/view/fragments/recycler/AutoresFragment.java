@@ -1,9 +1,6 @@
 package com.example.meuuniversomarvel.view.fragments.recycler;
 
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,7 +27,6 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-
 public class AutoresFragment extends Fragment implements CriadoresOnClick {
     private List<Result> results = new ArrayList<>();
     private AutoresViewModel viewModel;

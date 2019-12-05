@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.meuuniversomarvel.data.local.Database;
 import com.example.meuuniversomarvel.data.local.dao.PersonagemDAO;
 import com.example.meuuniversomarvel.model.characters.Personagens;
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
+import com.example.meuuniversomarvel.model.characters.Result;
 
 import java.util.List;
 
@@ -25,15 +25,14 @@ public class PersonagemRepository {
 
         return getApiService().getALLPersonagens(pagina, orderBy, ts, hash, apikey);
 
-        return getApiService().getALLPersonagens(orderBy, ts, hash, apikey);
     }
 
-    public void insertItems(Context context, List<ResultCharacters> perso) {
-
-        Database database = Database.getDatabase(context);
-        PersonagemDAO personagemDAO = database.personagemDAO();
-
-        personagemDAO.deleteAll();
-        personagemDAO.insertAll(perso);
+    //dados locais
+    public Observable<List<Result>> getLocalResults(Context context){
+        Database room = Database.getDatabase(context);
+        PersonagemDAO personagemDAO = room.personagemDAO();
+        return personagemDAO.getAllCharactes();
     }
+
+
 }

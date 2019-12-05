@@ -4,12 +4,12 @@
     <item
         android:id="@+id/HQs_Favoritos"
         android:icon="@drawable/icon_appbar_1"
-        android:title="HQs Favoritos" />
+        android:title="Indicados" />
 
     <item
         android:id="@+id/personagens_Favoritos"
         android:icon="@drawable/icon_appbar_2"
-        android:title="Personagens" />
+        android:title="Favoritos" />
 
     <item
         android:id="@+id/VoltarMenu"

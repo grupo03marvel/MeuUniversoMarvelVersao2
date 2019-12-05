@@ -7,7 +7,6 @@ import com.example.meuuniversomarvel.model.characters.Data;
 import com.example.meuuniversomarvel.model.characters.Events;
 import com.example.meuuniversomarvel.model.characters.Item;
 import com.example.meuuniversomarvel.model.characters.Personagens;
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
 import com.example.meuuniversomarvel.model.characters.Series;
 import com.example.meuuniversomarvel.model.characters.Stories;
 import com.example.meuuniversomarvel.model.characters.Thumbnail;
@@ -16,7 +15,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-
 import java.util.List;
 
 public class PersonagensConverters {

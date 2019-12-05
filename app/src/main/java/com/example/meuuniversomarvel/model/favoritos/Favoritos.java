@@ -8,9 +8,7 @@ import android.os.Parcelable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.meuuniversomarvel.model.characters.ResultCharacters;
-import com.example.meuuniversomarvel.model.comics.ResultComics;
-import com.example.meuuniversomarvel.model.events.ResultEvents;
+import com.example.meuuniversomarvel.model.characters.Result;
 import com.google.gson.annotations.Expose;
 
 @Entity(tableName = "favoritosT")
@@ -20,14 +18,9 @@ public class Favoritos implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long tableId;
 
-    @Expose
-    private ResultComics comicsResult;
 
     @Expose
-    private ResultCharacters charactersResult;
-
-    @Expose
-    private ResultEvents eventsResult;
+    private Result charactersResult;
 
     @Expose
     private String loginUser;
@@ -43,9 +36,8 @@ public class Favoritos implements Parcelable {
 
     protected Favoritos(Parcel in) {
         tableId = in.readLong();
-        comicsResult = in.readParcelable(ResultComics.class.getClassLoader());
-        charactersResult = in.readParcelable(ResultCharacters.class.getClassLoader());
-        eventsResult = in.readParcelable(ResultEvents.class.getClassLoader());
+
+        charactersResult = in.readParcelable(Result.class.getClassLoader());
         loginUser = in.readString();
         idComic = in.readString();
         idEvent = in.readString();
@@ -72,29 +64,16 @@ public class Favoritos implements Parcelable {
         this.tableId = tableId;
     }
 
-    public ResultComics getComicsResult() {
-        return comicsResult;
-    }
 
-    public void setComicsResult(ResultComics comicsResult) {
-        this.comicsResult = comicsResult;
-    }
 
-    public ResultCharacters getCharactersResult() {
+    public Result getCharactersResult() {
         return charactersResult;
     }
 
-    public void setCharactersResult(ResultCharacters charactersResult) {
+    public void setCharactersResult(Result charactersResult) {
         this.charactersResult = charactersResult;
     }
 
-    public ResultEvents getEventsResult() {
-        return eventsResult;
-    }
-
-    public void setEventsResult(ResultEvents eventsResult) {
-        this.eventsResult = eventsResult;
-    }
 
     public String getLoginUser() {
         return loginUser;
@@ -128,11 +107,9 @@ public class Favoritos implements Parcelable {
         this.idCharacter = idCharacter;
     }
 
-    public Favoritos(long tableId, ResultComics comicsResult, ResultCharacters charactersResult, ResultEvents eventsResult, String loginUser, String idComic, String idEvent, String idCharacter) {
+    public Favoritos(long tableId, Result charactersResult, String loginUser, String idComic, String idEvent, String idCharacter) {
         this.tableId = tableId;
-        this.comicsResult = comicsResult;
         this.charactersResult = charactersResult;
-        this.eventsResult = eventsResult;
         this.loginUser = loginUser;
         this.idComic = idComic;
         this.idEvent = idEvent;
@@ -147,9 +124,7 @@ public class Favoritos implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(tableId);
-        parcel.writeParcelable(comicsResult, i);
         parcel.writeParcelable(charactersResult, i);
-        parcel.writeParcelable(eventsResult, i);
         parcel.writeString(loginUser);
         parcel.writeString(idComic);
         parcel.writeString(idEvent);

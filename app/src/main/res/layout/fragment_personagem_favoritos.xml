@@ -8,6 +8,7 @@
     android:background="@color/vermelho">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_personagem_favorito"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

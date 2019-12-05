@@ -13,13 +13,15 @@
             android:id="@+id/nav_personagens_barra"
             android:title="@string/personagensNavBottom"
             android:icon="@drawable/icon_appbar_2"/>
+
         <item
-            android:id="@+id/nav_autores_barra"
+        android:id="@+id/nav_eventos_barra"
+        android:title="@string/eventosNav"
+        android:icon="@drawable/icon_appbar_4"/>
+        <item
+            android:id="@+id/nav_favoritos_barra"
             android:title="@string/autoresNav"
-            android:icon="@drawable/icon_appbar_3"/>
-        <item
-            android:id="@+id/nav_eventos_barra"
-            android:title="@string/eventosNav"
-            android:icon="@drawable/icon_appbar_4"/>
+            android:icon="@drawable/iconefavorito"/>
+
     </group>
 </menu>
