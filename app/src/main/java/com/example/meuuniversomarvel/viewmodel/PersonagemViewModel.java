@@ -14,6 +14,12 @@ import com.example.meuuniversomarvel.model.characters.Personagens;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.model.charactersId.Characterid;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
+import com.example.meuuniversomarvel.util.AppUtil;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -30,6 +36,8 @@ public class PersonagemViewModel extends AndroidViewModel {
     private PersonagemRepository Repository = new PersonagemRepository();
     private CompositeDisposable disposable = new CompositeDisposable();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    public MutableLiveData<Result> favoriteAdded = new MutableLiveData<>();
+    public MutableLiveData<Throwable> resultLiveDataError = new MutableLiveData<>();
 
 
 
@@ -85,5 +93,32 @@ public class PersonagemViewModel extends AndroidViewModel {
 //
 //    }
 
-}
+    public void salvarFavorito(Result result) {
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(getApplication())+ "/favoritos");
+        String key = reference.push().getKey();
+        reference.child(key).setValue(result);
+
+        reference.child(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Result result1 = dataSnapshot.getValue(Result.class);
+                favoriteAdded.setValue(result1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                resultLiveDataError.setValue(databaseError.toException());
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.clear();
+    }
+}

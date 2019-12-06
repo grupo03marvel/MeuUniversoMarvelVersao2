@@ -20,6 +20,7 @@ import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.view.adapter.PersonagemAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
+import com.example.meuuniversomarvel.view.interfaces.FavoriteItemAddClick;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PersonagensFragment extends Fragment implements PersonagensOnClick {
+public class PersonagensFragment extends Fragment implements PersonagensOnClick, FavoriteItemAddClick {
 
     private List<Result> results = new ArrayList<>();
     private PersonagemAdapter adapter;
@@ -79,7 +80,7 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
     private void initViews(View view) {
         recyclerView = view.findViewById(R.id.recycler_personagens);
         viewModel = ViewModelProviders.of(this).get(PersonagemViewModel.class);
-        adapter = new PersonagemAdapter(results, this);
+        adapter = new PersonagemAdapter(results, this, this);
         progressBar = view.findViewById(R.id.progress_bar);
 
     }
@@ -133,5 +134,15 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
     }
 
+    @Override
+    public void addFavoriteClickListener(Result result) {
+        viewModel.salvarFavorito(result);
+
+    }
+
+    @Override
+    public void removeFavoriteClickListener(Result result) {
+
+    }
 }
 

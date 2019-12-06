@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.view.interfaces.FavoriteItemAddClick;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.squareup.picasso.Picasso;
 
@@ -19,16 +20,18 @@ import java.util.List;
     public class PersonagemAdapter extends RecyclerView.Adapter <PersonagemAdapter.ViewHolder> {
         private List<Result> resultList;
         private PersonagensOnClick listener;
+        private FavoriteItemAddClick addClick;
 
-        public PersonagemAdapter(List<Result> resultList, PersonagensOnClick listener) {
+        public PersonagemAdapter(List<Result> resultList, PersonagensOnClick listener, FavoriteItemAddClick addClick) {
             this.resultList = resultList;
             this.listener = listener;
+            this.addClick = addClick;
         }
 
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_categoria, parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cecycler_personagem, parent,false);
             return new ViewHolder(view);
         }
 
@@ -37,12 +40,20 @@ import java.util.List;
             final Result result = resultList.get(position);
             holder.onBind(result);
 
+            holder.addItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addClick.addFavoriteClickListener(result);
+                }
+            });
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.personagemOnClick(result);
                 }
             });
+
         }
 
         @Override
@@ -65,6 +76,7 @@ import java.util.List;
         public class ViewHolder extends RecyclerView.ViewHolder {
             private TextView nomePerso;
             private ImageView fotoPerso;
+            private ImageView addItem;
 
 
 
@@ -72,6 +84,7 @@ import java.util.List;
                 super(itemView);
                 nomePerso = itemView.findViewById(R.id.nomeItem);
                 fotoPerso = itemView.findViewById(R.id.imgItem);
+                addItem = itemView.findViewById(R.id.salvarFavorito);
             }
 
             public void onBind(Result result) {

@@ -4,6 +4,7 @@ package com.example.meuuniversomarvel.view.fragments.detalhe;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.viewmodel.FavoritosViewModel;
 import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment.PERSONAGEM_KEY;
@@ -27,7 +29,7 @@ public class DetalhePersonagemFragment extends Fragment {
     private TextView txtDescricao;
     private TextView txtNomePer;
     private ImageView btnFavoritos;
-    private FavoritosViewModel viewModel;
+    private PersonagemViewModel viewModel;
 
 
     public DetalhePersonagemFragment() {
@@ -52,13 +54,6 @@ public class DetalhePersonagemFragment extends Fragment {
 
             txtDescricao.setText(result.getDescription());
             txtNomePer.setText(result.getName());
-
-            btnFavoritos.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewModel.inserePersonagemFavo(result);
-                }
-            });
 
         }
 
