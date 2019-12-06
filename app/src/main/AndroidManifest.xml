@@ -23,6 +23,7 @@
         <activity android:name=".view.activity.CadastroActivity" />
         <activity android:name=".view.activity.RecuperarSenhaActivity" />
         <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.JogoActivity" />
         <activity android:name=".view.activity.splashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

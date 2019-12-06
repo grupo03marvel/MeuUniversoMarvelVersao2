@@ -1,0 +1,40 @@
+{
+  "perguntas": [
+    {
+      "pergunta1": [
+        {
+          "imagem": "imagem1.png",
+          "texto": "Quem é este herói?",
+          "correta": "Homem de Ferro",
+          "respostas": [
+            {
+              "a": "Capitão América",
+              "b": "Homem de Ferro",
+              "c": "Thor",
+              "d": "Gavião Arqueiro"
+            }
+          ]
+        }
+
+      ]
+    },
+    {
+      "pergunta2": [
+        {
+          "imagem": "imagem2.png",
+          "texto": "Que filme é este?",
+          "correta": "Homem de Ferro 2",
+          "respostas": [
+            {
+              "a": "Capitão América - O ",
+              "b": "Homem de Ferro",
+              "c": "Thor",
+              "d": "Gavião Arqueiro"
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+}
