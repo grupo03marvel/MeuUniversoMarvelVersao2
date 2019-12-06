@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +21,7 @@ import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.model.favoritos.Favoritos;
 import com.example.meuuniversomarvel.util.AppUtil;
 import com.example.meuuniversomarvel.view.adapter.FavoritosAdapter;
+import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
 import com.example.meuuniversomarvel.view.interfaces.FavoriteItemRemoveClick;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.example.meuuniversomarvel.viewmodel.FavoritosViewModel;
@@ -31,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.meuuniversomarvel.view.fragments.recycler.PersonagensFragment.PERSONAGEM_KEY;
 
 
 public class PersonagemFavoritosFragment extends Fragment implements PersonagensOnClick, FavoriteItemRemoveClick {
@@ -75,7 +79,9 @@ public class PersonagemFavoritosFragment extends Fragment implements Personagens
     public void personagemOnClick(Result result) {
 
     }
-    private void carregarFavorites(){
+
+
+    private void carregarFavorites() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(getContext()) + "/favoritos");
         reference.orderByKey().addValueEventListener(new ValueEventListener() {
@@ -84,7 +90,7 @@ public class PersonagemFavoritosFragment extends Fragment implements Personagens
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Result> results = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Result result =  child.getValue(Result.class);
+                    Result result = child.getValue(Result.class);
                     results.add(result);
                 }
 
@@ -106,7 +112,26 @@ public class PersonagemFavoritosFragment extends Fragment implements Personagens
 
     @Override
     public void removeFavoriteClickListener(Result result) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(getContext()) + "/favoritos");
+        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
+                    Result resultFirebase = resultSnapshot.getValue(Result.class);
 
+                    if (result.getId().equals(resultFirebase.getId())) {
+                        resultSnapshot.getRef().removeValue();
+                        adapter.removeItem(result);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
-}
 
+}

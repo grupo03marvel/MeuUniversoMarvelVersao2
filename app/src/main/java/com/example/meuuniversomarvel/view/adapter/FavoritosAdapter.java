@@ -64,6 +64,11 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosAdapter.View
         notifyDataSetChanged();
     }
 
+    public void removeItem(Result result){
+        favoritosList.remove(result);
+        notifyDataSetChanged();
+    }
+
 
 
         public class ViewHolder extends RecyclerView.ViewHolder {

@@ -28,8 +28,6 @@ public class DetalhePersonagemFragment extends Fragment {
     private ImageView imgFundo;
     private TextView txtDescricao;
     private TextView txtNomePer;
-    private ImageView btnFavoritos;
-    private PersonagemViewModel viewModel;
 
 
     public DetalhePersonagemFragment() {
@@ -61,7 +59,7 @@ public class DetalhePersonagemFragment extends Fragment {
     }
 
     private void initView(View view) {
-        btnFavoritos = view.findViewById(R.id.btnImageFavoritos);
+
         txtDescricao = view.findViewById(R.id.textViewDetalhe);
         imgFundo = view.findViewById(R.id.imagemBanner);
         txtNomePer = view.findViewById(R.id.textViewTitulo);
