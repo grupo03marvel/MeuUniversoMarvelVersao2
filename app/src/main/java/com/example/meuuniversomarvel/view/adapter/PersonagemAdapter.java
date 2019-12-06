@@ -60,7 +60,10 @@ import java.util.List;
             notifyDataSetChanged();
         }
 
-
+        public void clear(){
+            this.resultList.clear();
+            notifyDataSetChanged();
+        }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private TextView nomePerso;

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
@@ -37,10 +38,10 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
     private PersonagemViewModel viewModel;
     public static final String PERSONAGEM_KEY = "Personagem";
     private ProgressBar progressBar;
-
+    private SearchView searchView;
+    private String bandName = "Spider";
 
     private int pagina = 0;
-
 
     public PersonagensFragment() {
         // Required empty public constructor
@@ -61,7 +62,6 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         viewModel.getPersonagens(pagina);
         viewModel.getListaPersonagem().observe(this, results1 -> {
             adapter.atualizaListaP(results1);
-
         });
 
         viewModel.getLoading().observe(this, loading -> {
@@ -72,6 +72,25 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                bandName = text;
+                adapter.clear();
+                viewModel.getPersonagens(1, bandName);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                if (text.length() > 2) {
+                    bandName = text;
+                    adapter.clear();
+                    viewModel.getPersonagens(1, bandName);
+                }
+                return false;
+            }
+        });
 
         return view;
     }
@@ -81,6 +100,7 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
         viewModel = ViewModelProviders.of(this).get(PersonagemViewModel.class);
         adapter = new PersonagemAdapter(results, this);
         progressBar = view.findViewById(R.id.progress_bar);
+        searchView = view.findViewById(R.id.searchView);
 
     }
 

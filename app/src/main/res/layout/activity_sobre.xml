@@ -13,24 +13,12 @@
         android:layout_width="205dp"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="Alexandre"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="205dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Amanda"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView9"
@@ -73,8 +61,6 @@
         android:text="Membros:"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -93,10 +79,13 @@
         android:layout_width="418dp"
         android:layout_height="94dp"
         android:layout_marginBottom="368dp"
-        android:fontFamily="@font/marvel"
+
         android:gravity="center"
-        android:text="Sobre este APP"
-        android:textSize="50sp"
+        android:text="Sobre este aplicativo"
+        android:background="@color/vermelho"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

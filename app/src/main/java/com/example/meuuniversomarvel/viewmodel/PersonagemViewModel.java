@@ -12,6 +12,7 @@ import com.example.meuuniversomarvel.model.characters.Personagens;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -70,5 +71,35 @@ public class PersonagemViewModel extends AndroidViewModel {
                             Log.i("LOG", "Error: " + throwable.getMessage());
                         }));
     }
+
+    public void getPersonagens(int pagina, String texto) {
+
+        Result result = new Result(texto);
+
+        disposable.add(
+                Repository.getPersonagemRepositori(pagina,"name", ts, hash, PUBLIC_KEY)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
+                        .subscribe(new Consumer<Personagens>() {
+                            @Override
+                            public void accept(Personagens personagem) throws Exception {
+                                //listaPersona.setValue(personagem.getData().getResults());
+
+                                List<Result> listaFitrada = new ArrayList<Result>();
+                                for (Result result1 : personagem.getData().getResults()) {
+                                    if(result1.getName().contains(texto)){
+                                        listaFitrada.add(result1);
+                                    }
+                                }
+                                listaPersona.setValue(listaFitrada);
+
+                            }
+                        }, throwable -> {
+                            Log.i("LOG", "Error pesquisa: " + throwable.getMessage());
+                        }));
+    }
+
 }
 

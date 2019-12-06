@@ -42,6 +42,10 @@ public class Result implements Parcelable {
     @Expose
     private List<Url> urls;
 
+    public Result(String name) {
+        this.name = name;
+    }
+
     protected Result(Parcel in) {
         description = in.readString();
         if (in.readByte() == 0) {
