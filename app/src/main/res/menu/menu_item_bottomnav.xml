@@ -20,7 +20,7 @@
         android:icon="@drawable/icon_appbar_4"/>
         <item
             android:id="@+id/nav_favoritos_barra"
-            android:title="@string/autoresNav"
+            android:title="Favoritos"
             android:icon="@drawable/iconefavorito"/>
 
     </group>

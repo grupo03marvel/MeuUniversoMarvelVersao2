@@ -15,11 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
 import com.example.meuuniversomarvel.view.adapter.PersonagemAdapter;
 import com.example.meuuniversomarvel.view.fragments.detalhe.DetalhePersonagemFragment;
+import com.example.meuuniversomarvel.view.interfaces.FavoriteItemAddClick;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 
@@ -29,7 +31,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PersonagensFragment extends Fragment implements PersonagensOnClick {
+public class PersonagensFragment extends Fragment implements PersonagensOnClick, FavoriteItemAddClick {
 
     private List<Result> results = new ArrayList<>();
     private PersonagemAdapter adapter;
@@ -37,7 +39,8 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
     private PersonagemViewModel viewModel;
     public static final String PERSONAGEM_KEY = "Personagem";
     private ProgressBar progressBar;
-
+    private SearchView searchView;
+    private String bandName = "Spider";
 
     private int pagina = 0;
 
@@ -72,6 +75,25 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                bandName = text;
+                adapter.clear();
+                viewModel.getPersonagens(1, bandName);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                if (text.length() > 2) {
+                    bandName = text;
+                    adapter.clear();
+                    viewModel.getPersonagens(1, bandName);
+                }
+                return false;
+            }
+        });
 
         return view;
     }
@@ -79,9 +101,9 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
     private void initViews(View view) {
         recyclerView = view.findViewById(R.id.recycler_personagens);
         viewModel = ViewModelProviders.of(this).get(PersonagemViewModel.class);
-        adapter = new PersonagemAdapter(results, this);
+        adapter = new PersonagemAdapter(results, this, this);
         progressBar = view.findViewById(R.id.progress_bar);
-
+        searchView = view.findViewById(R.id.searchView);
     }
 
 
@@ -133,5 +155,15 @@ public class PersonagensFragment extends Fragment implements PersonagensOnClick 
 
     }
 
+    @Override
+    public void addFavoriteClickListener(Result result) {
+        viewModel.salvarFavorito(result);
+
+    }
+
+    @Override
+    public void removeFavoriteClickListener(Result result) {
+
+    }
 }
 

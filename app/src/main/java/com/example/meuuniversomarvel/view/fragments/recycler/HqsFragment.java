@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.comics.Result;
@@ -39,6 +40,8 @@ public class HqsFragment extends Fragment implements HqsOnClick {
     private List<Result> listaComics = new ArrayList<>();
     private HqViewModel viewModel;
     public static final String HQ_KEY = "hq";
+    private SearchView searchView;
+    private String bandName = "Spider";
 
     private int pagina = 0;
 
@@ -57,6 +60,7 @@ public class HqsFragment extends Fragment implements HqsOnClick {
         progressBar = view.findViewById(R.id.progress_bar);
         viewModel = ViewModelProviders.of(this).get(HqViewModel.class);
         adapter = new HqAdapter(listaComics, this);
+        searchView = view.findViewById(R.id.searchView);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 3));
@@ -73,6 +77,26 @@ public class HqsFragment extends Fragment implements HqsOnClick {
                 progressBar.setVisibility(View.VISIBLE);
             }else {
                 progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                bandName = text;
+                adapter.clear();
+                viewModel.getAllComics(1, bandName);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                if (text.length() > 2) {
+                    bandName = text;
+                    adapter.clear();
+                    viewModel.getAllComics(1, bandName);
+                }
+                return false;
             }
         });
 

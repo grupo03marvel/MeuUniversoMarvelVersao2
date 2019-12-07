@@ -12,6 +12,7 @@ import com.example.meuuniversomarvel.model.events.Eventos;
 import com.example.meuuniversomarvel.model.events.Result;
 import com.example.meuuniversomarvel.repository.EventosRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -71,5 +72,37 @@ public class EventosViewModel extends AndroidViewModel {
                             Log.i("LOG", "Error: " + throwable.getMessage());
                         }));
     }
+
+    public void getEventos(int pagina, String texto) {
+
+        disposable.add(
+                repositpory.getEventosRepositori(pagina, "name", ts, hash, PUBLIC_KEY)
+
+                        .subscribeOn(Schedulers.newThread())
+
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
+                        .subscribe(new Consumer<Eventos>() {
+                            @Override
+                            public void accept(Eventos eventos) throws Exception {
+
+                                List<Result> listaFitrada = new ArrayList<>();
+                                for (Result result1 : eventos.getData().getResults()) {
+                                    String _name = result1.getTitle().toLowerCase();
+                                    String _texto = texto.toLowerCase();
+                                    if(_name.contains(_texto)){
+                                        listaFitrada.add(result1);
+                                    }
+                                }
+                                listaCriadores.setValue(listaFitrada);
+
+                            }
+                        }, throwable -> {
+
+                            Log.i("LOG", "Error: " + throwable.getMessage());
+                        }));
+    }
+
 }
 

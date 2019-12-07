@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.view.interfaces.FavoriteItemRemoveClick;
 import com.example.meuuniversomarvel.view.interfaces.PersonagensOnClick;
 import com.squareup.picasso.Picasso;
 
@@ -20,16 +21,18 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosAdapter.View
 
     private List<Result> favoritosList;
     private PersonagensOnClick onClick;
+    private FavoriteItemRemoveClick removeClick;
 
-    public FavoritosAdapter(List<Result> favoritosList, PersonagensOnClick onClick) {
+    public FavoritosAdapter(List<Result> favoritosList, PersonagensOnClick onClick, FavoriteItemRemoveClick removeClick) {
         this.favoritosList = favoritosList;
         this.onClick = onClick;
+        this.removeClick = removeClick;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_categoria, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cecycler_personagem, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,6 +45,13 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosAdapter.View
             onClick.personagemOnClick(favoritos);
         });
 
+        holder.removetem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeClick.removeFavoriteClickListener(favoritos);
+            }
+        });
+
     }
 
     @Override
@@ -49,45 +59,37 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosAdapter.View
         return favoritosList.size();
     }
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private ImageView imageViewFavorite;
-        private TextView textNome;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            imageViewFavorite = itemView.findViewById(R.id.btnImageFavoritos);
-            textNome = itemView.findViewById(R.id.textViewTitulo);
-        }
-
-
-        public void onBind(Result favoritos) {
-
-            if (favoritos.getThumbnail().getPath() != null && favoritos.getThumbnail().getExtension() != null) {
-                Picasso.get().load(favoritos.getThumbnail().getPath() + "/portrait_incredible." +
-                        favoritos.getThumbnail().getExtension())
-                        .into(imageViewFavorite);
-            }
-
-            if (favoritos.getName() != null) {
-                textNome.setText(favoritos.getName());
-            } else {
-                textNome.setText("");
-            }
-        }
+    public void update(List<Result> results) {
+        this.favoritosList = results;
+        notifyDataSetChanged();
     }
 
-
-    public void atualizaLista(List<Result> novaLista) {
-        if (this.favoritosList.isEmpty()) {
-            this.favoritosList = novaLista;
-        } else {
-            this.favoritosList.addAll(novaLista);
-        }
+    public void removeItem(Result result){
+        favoritosList.remove(result);
         notifyDataSetChanged();
     }
 
 
-}
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            private TextView nomePerso;
+            private ImageView fotoPerso;
+            private ImageView removetem;
+
+
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                nomePerso = itemView.findViewById(R.id.nomeItem);
+                fotoPerso = itemView.findViewById(R.id.imgItem);
+                removetem = itemView.findViewById(R.id.salvarFavorito);
+            }
+
+            public void onBind(Result result) {
+                Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(fotoPerso);
+
+                nomePerso.setText(result.getName());
+
+            }
+        }
+    }

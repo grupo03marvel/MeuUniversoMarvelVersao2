@@ -24,11 +24,11 @@ public class FavoritosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favoritos);
         BottomNavigationView navView = findViewById(R.id.nav_viewFavoritos);
 
-        replaceFragment(new ComicsFavoritosFragment());
+        replaceFragment(new PersonagemFavoritosFragment());
 
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.HQs_Favoritos, R.id.personagens_Favoritos, R.id.VoltarMenu)
+                 R.id.personagens_Favoritos, R.id.VoltarMenu)
                 .build();
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,11 +39,7 @@ public class FavoritosActivity extends AppCompatActivity {
 
                 int id = menuItem.getItemId();
 
-                if (id == R.id.HQs_Favoritos) {
-
-                    FavoritosActivity.this.replaceFragment(new ComicsFavoritosFragment());
-
-                } else if (id == R.id.personagens_Favoritos) {
+                if (id == R.id.personagens_Favoritos) {
 
                     FavoritosActivity.this.replaceFragment(new PersonagemFavoritosFragment());
 

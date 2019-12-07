@@ -85,16 +85,16 @@ public class CadastroActivity extends AppCompatActivity {
     private boolean validaCampos(String nome, String senha, String email, String idade) {
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            nomeCadastro.setError("Email inválido");
-            nomeCadastro.setErrorEnabled(false);
-            nomeCadastro.requestFocus();
-            Snackbar.make(idadeCadastro, "Email inválido", Snackbar.LENGTH_LONG).show();
+            emailCadastro.setError("Email inválido");
+            emailCadastro.setErrorEnabled(false);
+            emailCadastro.requestFocus();
+            Snackbar.make(emailCadastro, "Email inválido", Snackbar.LENGTH_LONG).show();
             return false;
         } if (email.isEmpty()) {
-            nomeCadastro.setError("O campo email não pode ser vazio");
-            nomeCadastro.setErrorEnabled(false);
-            nomeCadastro.requestFocus();
-            Snackbar.make(idadeCadastro, "O campo email não pode ser vazio", Snackbar.LENGTH_LONG).show();
+            emailCadastro.setError("O campo email não pode ser vazio");
+            emailCadastro.setErrorEnabled(false);
+            emailCadastro.requestFocus();
+            Snackbar.make(emailCadastro, "O campo email não pode ser vazio", Snackbar.LENGTH_LONG).show();
             return false;
         } if (senha.isEmpty()) {
             senhaCadastro.setError("O campo senha não deve ser vazio");

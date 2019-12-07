@@ -7,9 +7,9 @@
 
     <ImageView
         android:id="@+id/imagemBanner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
+        android:layout_width="200dp"
+        android:layout_height="290dp"
+        android:scaleType="fitXY"
         android:src="@drawable/bannerhq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
