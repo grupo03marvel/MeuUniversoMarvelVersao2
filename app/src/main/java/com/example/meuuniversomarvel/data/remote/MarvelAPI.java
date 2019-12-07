@@ -1,6 +1,7 @@
 package com.example.meuuniversomarvel.data.remote;
 
 import com.example.meuuniversomarvel.model.characters.Personagens;
+import com.example.meuuniversomarvel.model.charactersId.Characterid;
 import com.example.meuuniversomarvel.model.comics.ComicsResult;
 import com.example.meuuniversomarvel.model.creators.Criadores;
 import com.example.meuuniversomarvel.model.events.Eventos;
@@ -49,6 +50,14 @@ public interface MarvelAPI {
             @Query("hash") String hash,
             @Query("apikey") String apikey
 
+    );
+
+
+    @GET("characters/{charactersId}")
+    Observable<Characterid> getIdCharacter(
+            @Query("ts") String ts,
+            @Query("hash") String hash,
+            @Query("apikey") String apikey
     );
 
 }

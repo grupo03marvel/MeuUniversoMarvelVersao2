@@ -5,7 +5,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Insert;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -13,12 +16,14 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 
-@Entity(tableName = "persons")
+@Entity(tableName = "perso")
 public class Result implements Parcelable {
+
 
     @Expose
     private Comics comics;
     @Expose
+    @ColumnInfo(name = "descricao")
     private String description;
     @Expose
     private Events events;
@@ -30,6 +35,7 @@ public class Result implements Parcelable {
     @Expose
     private String modified;
     @Expose
+    @ColumnInfo(name = "name")
     private String name;
     @Expose
     private String resourceURI;
@@ -37,10 +43,41 @@ public class Result implements Parcelable {
     private Series series;
     @Expose
     private Stories stories;
+    @ColumnInfo(name = "imagem")
     @Expose
     private Thumbnail thumbnail;
     @Expose
     private List<Url> urls;
+
+    @Ignore
+    public Result(Thumbnail thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public Result(String description, String name, Thumbnail thumbnail) {
+        this.description = description;
+        this.name = name;
+        this.thumbnail = thumbnail;
+    }
+
+    public Result (){
+
+    }
+
+    @Ignore
+    public Result(Comics comics, String description, Events events, @NonNull Long id, String modified, String name, String resourceURI, Series series, Stories stories, Thumbnail thumbnail, List<Url> urls) {
+        this.comics = comics;
+        this.description = description;
+        this.events = events;
+        this.id = id;
+        this.modified = modified;
+        this.name = name;
+        this.resourceURI = resourceURI;
+        this.series = series;
+        this.stories = stories;
+        this.thumbnail = thumbnail;
+        this.urls = urls;
+    }
 
     protected Result(Parcel in) {
         description = in.readString();

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.meuuniversomarvel.model.favoritos.Favoritos;
 import com.example.meuuniversomarvel.view.fragments.recycler.AutoresFragment;
 import com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment;
 import com.example.meuuniversomarvel.view.fragments.recycler.HqsFragment;
@@ -59,8 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens,
-                R.id.nav_favoritos, R.id.nav_series, R.id.nav_autores)
+                R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens, R.id.nav_favoritos)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -89,10 +89,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
 
-                if (id == R.id.nav_autores) {
-                    replaceFragment(new AutoresFragment());
-
-                }
 
                 if (id == R.id.nav_series) {
                     replaceFragment(new EventosFragment());
@@ -127,7 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_hqs_barra, R.id.nav_personagens_barra, R.id.nav_autores_barra,
+                R.id.nav_hqs_barra, R.id.nav_personagens_barra, R.id.nav_favoritos_barra,
                 R.id.nav_eventos_barra)
                         .build();
 
@@ -148,16 +144,13 @@ public class HomeActivity extends AppCompatActivity {
                     HomeActivity.this.replaceFragment(new PersonagensFragment());
 
 
-                } else if (id == R.id.nav_autores_barra) {
-                    menu = R.id.nav_autores;
-                    HomeActivity.this.replaceFragment(new AutoresFragment());
-
-
                 } else if (id == R.id.nav_eventos_barra) {
 
                     menu = R.id.nav_series;
                     HomeActivity.this.replaceFragment(new EventosFragment());
 
+                } else if (id == R.id.nav_favoritos_barra) {
+                    startActivity(new Intent(HomeActivity.this, FavoritosActivity.class));
                 }
 
                 return true;
@@ -179,15 +172,14 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-        if (menu == R.id.nav_autores) {
-            replaceFragment(new AutoresFragment());
 
-        }
 
         if (menu == R.id.nav_series) {
             replaceFragment(new EventosFragment());
 
         }
+
+
     }
 
     private void replaceFragment(Fragment fragment) {

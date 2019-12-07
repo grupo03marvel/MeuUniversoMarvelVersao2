@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.events.Result;
@@ -36,7 +37,8 @@ public class EventosFragment extends Fragment implements EventosOnClick {
     private EventosAdapter adapter;
     public static final String EVENTOS_KEY = "Eventos";
     private ProgressBar progressBar;
-
+    private SearchView searchView;
+    private String bandName = "Spider";
 
     private int pagina = 1;
 
@@ -71,6 +73,25 @@ public class EventosFragment extends Fragment implements EventosOnClick {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                bandName = text;
+                adapter.clear();
+                viewModel.getEventos(1, bandName);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                if (text.length() > 2) {
+                    bandName = text;
+                    adapter.clear();
+                    viewModel.getEventos(1, bandName);
+                }
+                return false;
+            }
+        });
 
         return view;
     }
@@ -80,7 +101,7 @@ public class EventosFragment extends Fragment implements EventosOnClick {
         viewModel = ViewModelProviders.of(this).get(EventosViewModel.class);
         adapter = new EventosAdapter(results, this);
         progressBar = view.findViewById(R.id.progress_bar);
-
+        searchView = view.findViewById(R.id.searchView);
     }
 
     @Override

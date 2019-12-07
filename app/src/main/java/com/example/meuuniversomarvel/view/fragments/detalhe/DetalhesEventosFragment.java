@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.meuuniversomarvel.R;
 import com.example.meuuniversomarvel.model.events.Result;
+import com.example.meuuniversomarvel.viewmodel.FavoritosViewModel;
+import com.example.meuuniversomarvel.viewmodel.PersonagemViewModel;
 import com.squareup.picasso.Picasso;
 
 import static com.example.meuuniversomarvel.view.fragments.recycler.EventosFragment.EVENTOS_KEY;
@@ -24,6 +26,9 @@ public class DetalhesEventosFragment extends Fragment {
     private ImageView imgFundo;
     private TextView txtNome;
     private TextView txtDescricao;
+    private ImageView btnFavoritor;
+
+
 
 
     public DetalhesEventosFragment() {
@@ -47,14 +52,13 @@ public class DetalhesEventosFragment extends Fragment {
 
             txtDescricao.setText(result.getDescription());
             txtNome.setText(result.getTitle());
-
         }
 
 
         return view;
     }
 
-    private void initView(View view) {
+        private void initView(View view) {
         txtDescricao = view.findViewById(R.id.textDetalheEventos);
         imgFundo = view.findViewById(R.id.imagemBannerEventos);
         txtNome = view.findViewById(R.id.textEventos);

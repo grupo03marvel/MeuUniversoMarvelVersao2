@@ -94,19 +94,12 @@ public class LoginActivity extends AppCompatActivity {
 
         AppUtil.printKeyHash(this);
 
-        buttonEsqueciSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RecuperarSenhaActivity.class));
-            }
+        buttonEsqueciSenha.setOnClickListener(view -> {
+            Toast.makeText(LoginActivity.this, "Feature em desenvolvimento!", Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(LoginActivity.this, RecuperarSenhaActivity.class));
         });
 
-        buttonCriarConta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
-            }
-        });
+        buttonCriarConta.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, CadastroActivity.class)));
 
     }
 

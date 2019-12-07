@@ -1,6 +1,13 @@
 package com.example.meuuniversomarvel.repository;
 
+import android.content.Context;
+
+import com.example.meuuniversomarvel.data.local.Database;
+import com.example.meuuniversomarvel.data.local.dao.PersonagemDAO;
 import com.example.meuuniversomarvel.model.characters.Personagens;
+import com.example.meuuniversomarvel.model.characters.Result;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -19,4 +26,13 @@ public class PersonagemRepository {
         return getApiService().getALLPersonagens(pagina, orderBy, ts, hash, apikey);
 
     }
+
+    //dados locais
+    public Observable<List<Result>> getLocalResults(Context context){
+        Database room = Database.getDatabase(context);
+        PersonagemDAO personagemDAO = room.personagemDAO();
+        return personagemDAO.getAllCharactes();
+    }
+
+
 }

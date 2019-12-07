@@ -9,24 +9,21 @@
         android:background="#1E2D3E">
         <item
             android:id="@+id/nav_quadrinhos"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_appbar_1"
             android:title="Quadrinhos" />
-        <item
-            android:id="@+id/nav_autores"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Autores" />
+
         <item
             android:id="@+id/nav_personagens"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_appbar_2"
             android:title="Personagens" />
         <item
             android:id="@+id/nav_series"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_appbar_4"
             android:title="Eventos" />
 
         <item
             android:id="@+id/nav_favoritos"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/iconefavorito"
             android:title="Favoritos" />
 
     </group>
@@ -36,19 +33,15 @@
         android:checkableBehavior="single"
         android:background="#1E2D3E">
 
-        <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Login" />
 
         <item
             android:id="@+id/nav_sobre"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/iconesobre"
             android:title="Sobre" />
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/fui_ic_anonymous_white_24dp"
             android:title="Logout"
 
             />

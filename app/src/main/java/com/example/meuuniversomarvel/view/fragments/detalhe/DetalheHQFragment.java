@@ -46,7 +46,6 @@ public class DetalheHQFragment extends Fragment {
         if (getArguments() != null){
 
             Result result = getArguments().getParcelable(HQ_KEY);
-            Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgViewComic);
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgViewBannerTopo);
             txtViewTitulo.setText(result.getTitle());
             System.out.println("Valor do título: " + result.getTitle());
@@ -62,7 +61,7 @@ public class DetalheHQFragment extends Fragment {
     private void initViews(View view) {
 
 
-        imgViewComic = view.findViewById(R.id.imageQuadrinho);
+
         txtViewTitulo = view.findViewById(R.id.textViewTitulo);
         txtViewDetalhe = view.findViewById(R.id.textViewDetalhe);
         //txtViewDataPublicacao = view.findViewById(R.id.textViewDataPublicacao);

@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.recycler.PersonagemFavoritosFragment"
-    android:background="@color/vermelho">
+    android:background="@color/cor_Azul">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_personagem_favorito"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
