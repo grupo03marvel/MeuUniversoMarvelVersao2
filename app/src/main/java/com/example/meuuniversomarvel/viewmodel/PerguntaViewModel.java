@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.meuuniversomarvel.model.jogo.Pergunta;
+import com.example.meuuniversomarvel.model.jogo.Perguntas;
 import com.example.meuuniversomarvel.repository.PerguntaRepository;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class PerguntaViewModel extends AndroidViewModel {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe(disposable1 -> loading.setValue(true))
                     .doAfterTerminate(() -> loading.setValue(false))
-                    .subscribe(resposta -> listaPerguntas.setValue(resposta.getPerguntas()),
+                    .subscribe(perguntas -> listaPerguntas.setValue(perguntas.getPergunta()),
                         throwable -> {
                             Log.i("LOG", "busca perguntas" + throwable.getMessage());
                         })

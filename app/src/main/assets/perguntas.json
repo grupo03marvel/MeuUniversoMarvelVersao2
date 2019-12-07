@@ -1,40 +1,265 @@
 {
   "perguntas": [
-    {
-      "pergunta1": [
         {
-          "imagem": "imagem1.png",
-          "texto": "Quem é este herói?",
-          "correta": "Homem de Ferro",
+          "imagem": "imagem1.jpg",
+          "texto": "Em que ano foi lançada a primeira HQ do Homem Aranha?",
+          "correta": "1962",
           "respostas": [
             {
-              "a": "Capitão América",
-              "b": "Homem de Ferro",
-              "c": "Thor",
-              "d": "Gavião Arqueiro"
+              "a": "1959",
+              "b": "1960",
+              "c": "1961",
+              "d": "1962"
             }
           ]
+        },
+        {
+          "imagem": "imagem2.png",
+          "texto": "Qual o vilão do filme Homem de Ferro 3?",
+          "correta": "Aldrich Killian",
+          "respostas": [
+            {
+              "a": "Caveira Vermelha",
+              "b": "Thanos",
+              "c": "Mandarin",
+              "d": "Aldrich Killian"
+            }
+          ]
+        },
+        {
+          "imagem": "imagem3.jpeg",
+          "texto": "Em que ano foi lançado o primeiro filme dos Vingadores?",
+          "correta": "2012",
+          "respostas": [
+            {
+              "a": "2015",
+              "b": "2011",
+              "c": "2012",
+              "d": "2014"
+            }
+          ]
+        },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual a nacionalidade da Natasha Romanoff?",
+      "correta": "Russa",
+      "respostas": [
+        {
+          "a": "Alemã",
+          "b": "Sueca",
+          "c": "Russa",
+          "d": "Ucraniana"
         }
-
       ]
     },
     {
-      "pergunta2": [
+      "imagem": "imagem3.jpeg",
+      "texto": "Como se chama a arma do Thor?",
+      "correta": "Mjolnir",
+      "respostas": [
         {
-          "imagem": "imagem2.png",
-          "texto": "Que filme é este?",
-          "correta": "Homem de Ferro 2",
-          "respostas": [
-            {
-              "a": "Capitão América - O ",
-              "b": "Homem de Ferro",
-              "c": "Thor",
-              "d": "Gavião Arqueiro"
-            }
-          ]
+          "a": "Miunnir",
+          "b": "Mjolnir",
+          "c": "Nrondir",
+          "d": "Mirondir"
         }
-
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Quantas jóias do infinito existem?",
+      "correta": "6",
+      "respostas": [
+        {
+          "a": "3",
+          "b": "6",
+          "c": "5",
+          "d": "4"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Quais são as joias do infinito?",
+      "correta": "Espaço, Mente, Alma, Realidade, Tempo e Poder",
+      "respostas": [
+        {
+          "a": "Espaço, Mente, Alma, Realidade, Tempo e Poder",
+          "b": "Justiça, Mente, Diferenças, Realidade, Tempo e Poder",
+          "c": "Destruição, Viagem, Alma, Tecnologia, Tempo e Dinheiro",
+          "d": "Espaço, Indestrutível, Alma, Planetas, Viagem no Tempo e Poder"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o nome da nave de Peter Quill?",
+      "correta": "Milano",
+      "respostas": [
+        {
+          "a": "Mutano",
+          "b": "Elano",
+          "c": "Urano",
+          "d": "Milano"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Quais os nomes das filhas de Thanos?",
+      "correta": "Gamora e Nebulosa",
+      "respostas": [
+        {
+          "a": "Gamora e Nebulosa",
+          "b": "Amora e Nervosa",
+          "c": "Gomora e Nebulosa",
+          "d": "Gomorra e Nerdulosa"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual a formação do primeiro filme dos Vingadores?",
+      "correta": "Viúva Negra, Gavião Arqueiro, Homem de Ferro, Hulk, Thor e Capitão América",
+      "respostas": [
+        {
+          "a": "Viúva Negra, Gavião Arqueiro, Homem de Ferro, Hulk, Thor e Capitão América",
+          "b": "Viúva Negra, Gavião Arqueiro, Homem Aranha, Hulk, Thor e Capitão América",
+          "c": "Viúva Negra, Máquina de Combate, Homem de Ferro, Hulk, Thor e Capitão América",
+          "d": "Viúva Negra, Falcão, Homem de Ferro, Hulk, Thor e Capitão América"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o vilão do segundo filme dos Vingadores?",
+      "correta": "Ultron",
+      "respostas": [
+        {
+          "a": "Thanos",
+          "b": "Ultron",
+          "c": "Barão von Strucker",
+          "d": "Loki"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Quais as criaturas vilãs em Thor - O Mundo Sombrio?",
+      "correta": "Elfos Negros",
+      "respostas": [
+        {
+          "a": "Elfos Sagrados",
+          "b": "Elfos Brancos",
+          "c": "Elfos Negros",
+          "d": "Elfos Assassinos"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o líder dos Elfos Negros?",
+      "correta": "Malekith",
+      "respostas": [
+        {
+          "a": "Malekith",
+          "b": "Kaecillius",
+          "c": "Ronan",
+          "d": "Laufey"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual a líder do Povo Supremo?",
+      "correta": "Ayesha",
+      "respostas": [
+        {
+          "a": "Nebulosa",
+          "b": "Ayesha",
+          "c": "Shaka",
+          "d": "Shandrey"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Em qual filme do MCU Thanos apareceu pela primeira vez?",
+      "correta": "Os Vingadores",
+      "respostas": [
+        {
+          "a": "Thor",
+          "b": "Guardiões da Galaxia",
+          "c": "Os Vingadores",
+          "d": "Homem de Ferro 3"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Em que ano Thanos apareceu pela primeira vez nas HQs?",
+      "correta": "1973",
+      "respostas": [
+        {
+          "a": "1971",
+          "b": "1973",
+          "c": "1974",
+          "d": "1970"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o vilão de Homem de Ferro 2?",
+      "correta": "Chicote Negro",
+      "respostas": [
+        {
+          "a": "Chicote Negro",
+          "b": "Mandarin",
+          "c": "Aldrich Killian",
+          "d": "O Consertador"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o vilão de Homem Formiga?",
+      "correta": "Jaqueta Amarela",
+      "respostas": [
+        {
+          "a": "Jaqueta Amarela",
+          "b": "Jaqueta Preta",
+          "c": "Jaqueta Azul",
+          "d": "Jaqueta Vermelha"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o codinome de Peter Quill?",
+      "correta": "Senhor das Estrelas",
+      "respostas": [
+        {
+          "a": "Lorde das Estrelas",
+          "b": "Senhor das Constelações",
+          "c": "Senhor dos Planetas",
+          "d": "Senhor das Estrelas"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "Qual o nome do pai de Peter Quill?",
+      "correta": "Ego",
+      "respostas": [
+        {
+          "a": "Moral",
+          "b": "Ego",
+          "c": "Elgor",
+          "d": "Yondu"
+        }
       ]
     }
+
   ]
 }

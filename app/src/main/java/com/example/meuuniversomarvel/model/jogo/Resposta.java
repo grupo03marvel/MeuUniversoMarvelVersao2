@@ -1,13 +1,18 @@
 
 package com.example.meuuniversomarvel.model.jogo;
 
+import com.google.gson.annotations.Expose;
 
 @SuppressWarnings("unused")
 public class Resposta {
 
+    @Expose
     private String a;
+    @Expose
     private String b;
+    @Expose
     private String c;
+    @Expose
     private String d;
 
     public String getA() {
