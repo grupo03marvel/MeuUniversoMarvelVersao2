@@ -60,6 +60,10 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        this.resultList.clear();
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView nomeEvento;

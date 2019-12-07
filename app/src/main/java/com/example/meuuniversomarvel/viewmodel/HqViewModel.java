@@ -8,9 +8,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.meuuniversomarvel.model.comics.ComicsResult;
 import com.example.meuuniversomarvel.model.comics.Result;
 import com.example.meuuniversomarvel.repository.HqRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,6 +55,31 @@ public class HqViewModel extends AndroidViewModel {
 
                             listaComics.setValue(response.getData().getResults());
                             Log.i("LOG", "API: " + response.getData().getResults() );
+
+                        }, throwable -> {
+                            Log.i("LOG", "Error: " + throwable.getMessage());
+                        })
+        );
+    }
+
+    public void getAllComics(int pagina, String texto){
+        disposable.add(
+                repository.getHqs(pagina, "magazine", "comic", true, "focDate", ts, hash, PUBLIC_KEY)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> loading.setValue(true))
+                        .doOnTerminate(() -> loading.setValue(false))
+                        .subscribe(response -> {
+
+                            List<Result> listaFitrada = new ArrayList<>();
+                            for (Result result1 : response.getData().getResults()) {
+                                String _name = result1.getTitle().toLowerCase();
+                                String _texto = texto.toLowerCase();
+                                if(_name.contains(_texto)){
+                                    listaFitrada.add(result1);
+                                }
+                            }
+                            listaComics.setValue(listaFitrada);
 
                         }, throwable -> {
                             Log.i("LOG", "Error: " + throwable.getMessage());

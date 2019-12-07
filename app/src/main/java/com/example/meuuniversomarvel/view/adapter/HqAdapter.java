@@ -64,6 +64,10 @@ public class HqAdapter extends RecyclerView.Adapter<HqAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        this.hqsList.clear();
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.meuuniversomarvel.model.characters.Personagens;
 import com.example.meuuniversomarvel.model.characters.Result;
+import com.example.meuuniversomarvel.model.comics.ComicsResult;
 import com.example.meuuniversomarvel.repository.PersonagemRepository;
 
 import java.util.ArrayList;
@@ -74,8 +75,6 @@ public class PersonagemViewModel extends AndroidViewModel {
 
     public void getPersonagens(int pagina, String texto) {
 
-        Result result = new Result(texto);
-
         disposable.add(
                 Repository.getPersonagemRepositori(pagina,"name", ts, hash, PUBLIC_KEY)
                         .subscribeOn(Schedulers.newThread())
@@ -85,11 +84,12 @@ public class PersonagemViewModel extends AndroidViewModel {
                         .subscribe(new Consumer<Personagens>() {
                             @Override
                             public void accept(Personagens personagem) throws Exception {
-                                //listaPersona.setValue(personagem.getData().getResults());
 
-                                List<Result> listaFitrada = new ArrayList<Result>();
+                                List<Result> listaFitrada = new ArrayList<>();
                                 for (Result result1 : personagem.getData().getResults()) {
-                                    if(result1.getName().contains(texto)){
+                                    String _name = result1.getName().toLowerCase();
+                                    String _texto = texto.toLowerCase();
+                                    if(_name.contains(_texto)){
                                         listaFitrada.add(result1);
                                     }
                                 }
