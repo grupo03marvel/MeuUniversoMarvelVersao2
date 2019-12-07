@@ -6,8 +6,8 @@ public class AppJogoUtils {
 
     private ArrayList<Integer> numerosRandom = new ArrayList<>();
     private int numAtual;
-    private int qtdeErros;
-    private int qtdeNumAcertos;
+    private static int qtdeNumErros;
+    private static int qtdeNumAcertos;
 
     public ArrayList<Integer> getNumerosRandom() {
         return numerosRandom;
@@ -26,11 +26,11 @@ public class AppJogoUtils {
     }
 
     public int getQtdeErros() {
-        return qtdeErros;
+        return qtdeNumErros;
     }
 
     public void setQtdeErros(int qtdeErros) {
-        this.qtdeErros = qtdeErros;
+        this.qtdeNumErros = qtdeErros;
     }
 
     public int getQtdeNumAcertos() {
@@ -39,5 +39,21 @@ public class AppJogoUtils {
 
     public void setQtdeNumAcertos(int qtdeNumAcertos) {
         this.qtdeNumAcertos = qtdeNumAcertos;
+    }
+
+    public static int pegarAcertos(){
+        return qtdeNumAcertos;
+    }
+
+    public static int pegarErros(){
+        return qtdeNumErros;
+    }
+
+    public static void setAcertos(int qtdeAcertos){
+        qtdeNumAcertos = qtdeAcertos;
+    }
+
+    public static void setErros(int qtdeErros){
+        qtdeNumErros = qtdeErros;
     }
 }

@@ -60,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens, R.id.nav_favoritos)
                 R.id.nav_quadrinhos, R.id.nav_sobre, R.id.nav_personagens, R.id.nav_favoritos, R.id.nav_jogo)
                 .setDrawerLayout(drawer)
                 .build();

@@ -28,7 +28,7 @@
 
         <item
             android:id="@+id/nav_jogo"
-            android:icon="@drawable/iconefavorito"
+            android:icon="@drawable/icon_appbar_5"
             android:title="Marvel Game" />
 
     </group>

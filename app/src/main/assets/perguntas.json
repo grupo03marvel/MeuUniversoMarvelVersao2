@@ -1,47 +1,47 @@
 {
   "perguntas": [
+    {
+      "imagem": "imagem1.jpg",
+      "texto": "EM QUE ANO FOI LANÇADA A PRIMEIRA HQ DO HOMEM ARANHA?",
+      "correta": "1962",
+      "respostas": [
         {
-          "imagem": "imagem1.jpg",
-          "texto": "Em que ano foi lançada a primeira HQ do Homem Aranha?",
-          "correta": "1962",
-          "respostas": [
-            {
-              "a": "1959",
-              "b": "1960",
-              "c": "1961",
-              "d": "1962"
-            }
-          ]
-        },
+          "a": "1959",
+          "b": "1960",
+          "c": "1961",
+          "d": "1962"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem2.png",
+      "texto": "QUAL O VILÃO DO FILME HOMEM DE FERRO 3?",
+      "correta": "Aldrich Killian",
+      "respostas": [
         {
-          "imagem": "imagem2.png",
-          "texto": "Qual o vilão do filme Homem de Ferro 3?",
-          "correta": "Aldrich Killian",
-          "respostas": [
-            {
-              "a": "Caveira Vermelha",
-              "b": "Thanos",
-              "c": "Mandarin",
-              "d": "Aldrich Killian"
-            }
-          ]
-        },
-        {
-          "imagem": "imagem3.jpeg",
-          "texto": "Em que ano foi lançado o primeiro filme dos Vingadores?",
-          "correta": "2012",
-          "respostas": [
-            {
-              "a": "2015",
-              "b": "2011",
-              "c": "2012",
-              "d": "2014"
-            }
-          ]
-        },
+          "a": "Caveira Vermelha",
+          "b": "Thanos",
+          "c": "Mandarin",
+          "d": "Aldrich Killian"
+        }
+      ]
+    },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual a nacionalidade da Natasha Romanoff?",
+      "texto": "EM QUE ANO FOI LANÇADO O PRIMEIRO FILME DOS VINGADORES?",
+      "correta": "2012",
+      "respostas": [
+        {
+          "a": "2015",
+          "b": "2011",
+          "c": "2012",
+          "d": "2014"
+        }
+      ]
+    },
+    {
+      "imagem": "imagem3.jpeg",
+      "texto": "QUAL A NACIONALIDADE DA NATASHA ROMANOFF?",
       "correta": "Russa",
       "respostas": [
         {
@@ -54,7 +54,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Como se chama a arma do Thor?",
+      "texto": "COMO SE CHAMA A ARMA DO THOR?",
       "correta": "Mjolnir",
       "respostas": [
         {
@@ -67,7 +67,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Quantas jóias do infinito existem?",
+      "texto": "QUANTAS JOIAS DO INFINITO EXISTEM?",
       "correta": "6",
       "respostas": [
         {
@@ -80,7 +80,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Quais são as joias do infinito?",
+      "texto": "QUAIS SAO AS JOIAS DO INFINITO?",
       "correta": "Espaço, Mente, Alma, Realidade, Tempo e Poder",
       "respostas": [
         {
@@ -93,7 +93,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o nome da nave de Peter Quill?",
+      "texto": "QUAL O NOME DA NAVE DE PETER QUILL?",
       "correta": "Milano",
       "respostas": [
         {
@@ -106,7 +106,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Quais os nomes das filhas de Thanos?",
+      "texto": "QUAIS OS NOMES DAS FILHAS DE THANOS?",
       "correta": "Gamora e Nebulosa",
       "respostas": [
         {
@@ -119,7 +119,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual a formação do primeiro filme dos Vingadores?",
+      "texto": "QUAL A FORMAÇÃO DO PRIMEIRO FILME DOS VINGADORES?",
       "correta": "Viúva Negra, Gavião Arqueiro, Homem de Ferro, Hulk, Thor e Capitão América",
       "respostas": [
         {
@@ -132,7 +132,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o vilão do segundo filme dos Vingadores?",
+      "texto": "QUAL O VILÃO DO SEGUNDO FILME DOS VINGADORES?",
       "correta": "Ultron",
       "respostas": [
         {
@@ -145,7 +145,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Quais as criaturas vilãs em Thor - O Mundo Sombrio?",
+      "texto": "QUAIS AS CRIATURAS VILÃS EM THOR - O MUNDO SOMBRIO?",
       "correta": "Elfos Negros",
       "respostas": [
         {
@@ -158,7 +158,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o líder dos Elfos Negros?",
+      "texto": "QUAL O LIDER DOS ELFOS NEGROS?",
       "correta": "Malekith",
       "respostas": [
         {
@@ -171,7 +171,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual a líder do Povo Supremo?",
+      "texto": "COMO SE CHAMA A LIDER DO POVO SUPREMO?",
       "correta": "Ayesha",
       "respostas": [
         {
@@ -184,7 +184,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Em qual filme do MCU Thanos apareceu pela primeira vez?",
+      "texto": "EM QUAL FILME DO MCU THANOS APARECEU PELA PRIMEIRA VEZ?",
       "correta": "Os Vingadores",
       "respostas": [
         {
@@ -197,7 +197,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Em que ano Thanos apareceu pela primeira vez nas HQs?",
+      "texto": "EM QUE ANO THANOS APARECEU PELA PRIMEIRA VEZ NAS HQS?",
       "correta": "1973",
       "respostas": [
         {
@@ -210,7 +210,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o vilão de Homem de Ferro 2?",
+      "texto": "QUAL O VILÃO DE HOMEM DE FERRO 2?",
       "correta": "Chicote Negro",
       "respostas": [
         {
@@ -223,7 +223,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o vilão de Homem Formiga?",
+      "texto": "QUAL O VILÃO DE HOMEM FORMIGA?",
       "correta": "Jaqueta Amarela",
       "respostas": [
         {
@@ -236,7 +236,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o codinome de Peter Quill?",
+      "texto": "QUAL O CODINOME DE PETER QUILL?",
       "correta": "Senhor das Estrelas",
       "respostas": [
         {
@@ -249,7 +249,7 @@
     },
     {
       "imagem": "imagem3.jpeg",
-      "texto": "Qual o nome do pai de Peter Quill?",
+      "texto": "QUAL O NOME DO PAI DE PETER QUILL?",
       "correta": "Ego",
       "respostas": [
         {

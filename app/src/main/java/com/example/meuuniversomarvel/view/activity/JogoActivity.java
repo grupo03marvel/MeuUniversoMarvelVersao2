@@ -13,10 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.meuuniversomarvel.R;
-import com.example.meuuniversomarvel.util.AppJogoUtils;
 import com.example.meuuniversomarvel.viewmodel.PerguntaViewModel;
 
 import java.util.Random;
+
+import static com.example.meuuniversomarvel.util.AppJogoUtils.pegarAcertos;
+import static com.example.meuuniversomarvel.util.AppJogoUtils.pegarErros;
+import static com.example.meuuniversomarvel.util.AppJogoUtils.setAcertos;
+import static com.example.meuuniversomarvel.util.AppJogoUtils.setErros;
 
 public class JogoActivity extends AppCompatActivity {
 
@@ -30,15 +34,14 @@ public class JogoActivity extends AppCompatActivity {
     private int qtdeAcertos;
     private PerguntaViewModel viewModel;
     private static int numRandom;
-    private AppJogoUtils nroAtual = new AppJogoUtils();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo);
 
-        qtdeErros = nroAtual.getQtdeErros();
-        qtdeAcertos = nroAtual.getQtdeNumAcertos();
+        qtdeErros = pegarErros();
+        qtdeAcertos = pegarAcertos();
 
         initViews();
         viewModel.buscaPerguntas();
@@ -56,72 +59,73 @@ public class JogoActivity extends AppCompatActivity {
 
             //for (int i = 0; i < perguntaRetornada.size(); i++){
 
-                    Resources res = getResources();
+                    /*Resources res = getResources();
                     String mDrawableName = perguntaRetornada.get(numRandom).getImagem();
                     int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
-                    imgView.setImageResource(resID);
-                    //imgView.setImageDrawable(perguntaRetornada.get(0).getImagem());
-                    txtViewPergunta.setText(perguntaRetornada.get(numRandom).getTexto());
-                    btResposta1.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getA());
-                    btResposta2.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getB());
-                    btResposta3.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getC());
-                    btResposta4.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getD());
+                    */
+            //imgView.setImageDrawable(perguntaRetornada.get(0).getImagem());
+            imgView.setImageResource(R.drawable.imagem1);
+            txtViewPergunta.setText(perguntaRetornada.get(numRandom).getTexto());
+            btResposta1.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getA());
+            btResposta2.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getB());
+            btResposta3.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getC());
+            btResposta4.setText(perguntaRetornada.get(numRandom).getRespostas().get(0).getD());
 
-                    int finalI = 0;
-                    btResposta1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getA())){
-                                qtdeAcertos = 1;
-                               metodoAcertou(qtdeAcertos);
+            int finalI = 0;
+            btResposta1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getA())){
+                        qtdeAcertos = 1;
+                        metodoAcertou(qtdeAcertos);
 
-                            }else{
-                                qtdeErros = 1;
-                                metodoErrou(qtdeErros);
-                            }
-                        }
-                    });
-                    btResposta2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getB())){
-                                qtdeAcertos = 1;
-                                metodoAcertou(qtdeAcertos);
-                            }else{
-                                qtdeErros = 1;
-                                metodoErrou(qtdeErros);
-                            }
-                        }
-                    });
-                    btResposta3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getC())){
-                                qtdeAcertos = 1;
-                                metodoAcertou(qtdeAcertos);
-                            }else{
-                                qtdeErros = 1;
-                                metodoErrou(qtdeErros);
-                            }
-                        }
-                    });
-                    btResposta4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getD())){
-                                qtdeAcertos = 1;
-                                metodoAcertou(qtdeAcertos);
-                            }else{
-                                qtdeErros = 1;
-                                metodoErrou(qtdeErros);
-                            }
-                        }
-                    });
-
-
+                    }else{
+                        qtdeErros = 1;
+                        metodoErrou(qtdeErros);
+                    }
+                }
+            });
+            btResposta2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getB())){
+                        qtdeAcertos = 1;
+                        metodoAcertou(qtdeAcertos);
+                    }else{
+                        qtdeErros = 1;
+                        metodoErrou(qtdeErros);
+                    }
+                }
+            });
+            btResposta3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getC())){
+                        qtdeAcertos = 1;
+                        metodoAcertou(qtdeAcertos);
+                    }else{
+                        qtdeErros = 1;
+                        metodoErrou(qtdeErros);
+                    }
+                }
+            });
+            btResposta4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (perguntaRetornada.get(numRandom).getCorreta().equals(perguntaRetornada.get(numRandom).getRespostas().get(0).getD())){
+                        qtdeAcertos = 1;
+                        metodoAcertou(qtdeAcertos);
+                    }else{
+                        qtdeErros = 1;
+                        metodoErrou(qtdeErros);
+                    }
+                }
+            });
 
 
-           // }
+
+
+            // }
         });
 
 
@@ -145,19 +149,24 @@ public class JogoActivity extends AppCompatActivity {
     private void metodoErrou(int erroCount){
         Toast.makeText(JogoActivity.this, "Erroooou", Toast.LENGTH_SHORT).show();
         erroCount+=1;
-        nroAtual.setQtdeErros(erroCount);
-        System.out.println("O que vem da lista qtde erros: "+ nroAtual.getQtdeErros());
-        System.out.println("O que vem da lista qtde acertos: "+ nroAtual.getQtdeNumAcertos());
+        setErros(erroCount);
+        System.out.println("O que vem da lista qtde erros: "+ pegarErros());
+        System.out.println("O que vem da lista qtde acertos: "+ pegarAcertos());
         startActivity(new Intent(JogoActivity.this, ErroActivity.class));
     }
 
     private void metodoAcertou(int acertoCount){
         Toast.makeText(JogoActivity.this, "Acertooooou", Toast.LENGTH_SHORT).show();
         acertoCount += 1;
-        nroAtual.setQtdeNumAcertos(acertoCount);
-        System.out.println("O que vem da lista qtde erros: "+ nroAtual.getQtdeErros());
-        System.out.println("O que vem da lista qtde acertos: "+ nroAtual.getQtdeNumAcertos());
+        setAcertos(acertoCount);
+        System.out.println("O que vem da lista qtde erros: "+ pegarErros());
+        System.out.println("O que vem da lista qtde acertos: "+ pegarAcertos());
         startActivity(new Intent(JogoActivity.this, AcertoActivity.class));
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(JogoActivity.this, HomeActivity.class));
+    }
 }
